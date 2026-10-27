@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shamsiddinyusupov.github.io/imperial/sitemap.xml
