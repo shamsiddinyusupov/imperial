@@ -27,6 +27,6 @@ When they say **"imperial website"**, this repo is the site. Full business facts
 - Plisse only: each blind is billed at least 1 m² (`MIN_AREA`).
 - Warranty: 1 year from Imperial on all products (owner, 28.10.2026).
 - Payment: any method — Click, Payme, card transfer, cash (owner, 28.10.2026).
-- Free measuring/delivery/installation only in Tashkent city; Tashkent region → calculator + Telegram. Ready 3 days after measuring.
+- Free measuring/delivery/installation only in Tashkent city; Tashkent region → calculator, then the customer writes personally via Telegram or Instagram Direct (owner, 28.10.2026). Ready 3 days after measuring.
 - Contacts (owner, 28.10.2026: the only working number; Telegram is on the same number): Telegram https://t.me/jalyuzi_imperial, phone +998 33 751 11 88, Instagram @imperial_jalyuzi_uz, hours Mon–Sat 9:30–20:00, Sun 10:00–18:00. Exact address not given yet (service-area business).
 - Do not use watermarked or third-party marketing photos without the owner confirming rights; prefer their own installation photos. Catalog/hero images are uniform 4:5 (800×1000, `c_*.jpg`); mosquito-net images are 600×1000 (`st_*.jpg`).
