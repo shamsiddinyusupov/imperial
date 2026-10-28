@@ -26,6 +26,7 @@ When they say **"imperial website"**, this repo is the site. Full business facts
 - Prices are Imperial's own (owner, 28.10.2026). Plisse is priced per sash of a standard home window (= per m², billed at least 1 m²) by fabric: Screen 100 000, Lezbon 130 000, Roma 170 000, Blackout 200 000; default fabric Lezbon. All other types per m²: kombo 110 000–230 000, rollo 140 000–240 000, dikey 240 000–340 000, vertikal 100 000, gorizontal 160 000. `PRICES[type] = null` means "Narxi so‘rov bo‘yicha" (use only for types without an owner price, e.g. mosquito nets). Never show competitor prices as theirs.
 - Plisse only: each blind is billed at least 1 m² (`MIN_AREA`).
 - Warranty: 1 year from Imperial on all products (owner, 28.10.2026).
+- Payment: any method — Click, Payme, card transfer, cash (owner, 28.10.2026).
 - Free measuring/delivery/installation only in Tashkent city; Tashkent region → calculator + Telegram. Ready 3 days after measuring.
 - Contacts (owner, 28.10.2026: the only working number; Telegram is on the same number): Telegram https://t.me/jalyuzi_imperial, phone +998 33 751 11 88, Instagram @imperial_jalyuzi_uz, hours Mon–Sat 9:30–20:00, Sun 10:00–18:00. Exact address not given yet (service-area business).
 - Do not use watermarked or third-party marketing photos without the owner confirming rights; prefer their own installation photos. Catalog/hero images are uniform 4:5 (800×1000, `c_*.jpg`); mosquito-net images are 600×1000 (`st_*.jpg`).
