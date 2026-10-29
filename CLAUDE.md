@@ -23,7 +23,7 @@ When they say **"imperial website"**, this repo is the site. Full business facts
 
 ## Rules that must hold
 - Keep `<meta name="google-site-verification" content="8vWDjGmRq9Fx1DPi-ihoXKtanp9MGnJ2DnvILczSgY4">` in the build head (Search Console verification for /imperial/ and /imperial/ru/).
-- Prices are Imperial's own (owner, 28.10.2026). Plisse is priced per sash of a standard home window (= per m², billed at least 1 m²) by fabric: Screen 100 000, Lezbon 130 000, Roma 170 000, Blackout 200 000; default fabric Lezbon. All other types per m²: kombo 110 000–230 000, rollo 140 000–240 000, dikey 240 000–340 000, vertikal 100 000, gorizontal 160 000. `PRICES[type] = null` means "Narxi so‘rov bo‘yicha" (use only for types without an owner price, e.g. mosquito nets). Never show competitor prices as theirs.
+- Prices are Imperial's own (owner, 28.10.2026). Plisse is priced per sash of a standard home window (= per m², billed at least 1 m²) by fabric: Screen 100 000, Lezbon 130 000, Roma 170 000, Blackout 200 000; default fabric Lezbon. All other types per m²: kombo 110 000–230 000, rollo 140 000–240 000, dikey 240 000–340 000, vertikal 100 000, gorizontal 160 000, rimskiy shtora 250 000 (owner, 29.10.2026; its lead time is not 3 days — exact term pending). `PRICES[type] = null` means "Narxi so‘rov bo‘yicha" (use only for types without an owner price, e.g. mosquito nets). Never show competitor prices as theirs.
 - Plisse only: each blind is billed at least 1 m² (`MIN_AREA`).
 - Warranty: 1 year from Imperial on all products (owner, 28.10.2026).
 - Payment: any method — Click, Payme, card transfer, cash (owner, 28.10.2026).
