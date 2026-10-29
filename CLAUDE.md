@@ -11,6 +11,7 @@ When they say **"imperial website"**, this repo is the site. Full business facts
 
 ## Layout
 - `src/imperial-sayt.html` — the only file to edit. One page: hero collage, catalog, plisse catalog, mosquito nets, calculator, works, steps, FAQ, contacts. All text lives in the `T` dictionary (`uz` and `ru`) inside the script; elements use `data-i`, `data-i-alt`, `data-i-aria` keys.
+- `src/link.html` — the Instagram link-in-bio page (UZ/RU toggle, «Qora oltin» style); the build copies it to `docs/link/index.html` (live: /imperial/link/). Keep its links and facts in step with the main page.
 - `src/img/` — every image the source uses.
 - `src/build_site.py` — renders both languages with Playwright and writes `docs/` (pre-rendered text for SEO, head meta, canonical/hreflang, JSON-LD, favicon, robots.txt, sitemap.xml, .nojekyll).
 - `docs/` — generated output. Never edit by hand.

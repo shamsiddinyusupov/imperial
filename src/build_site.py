@@ -149,6 +149,11 @@ def main():
         out = f"{DIST}/index.html" if lang == "uz" else f"{DIST}/ru/index.html"
         open(out, "w", encoding="utf-8").write(html)
         print(lang, "->", out, len(html) // 1024, "KB")
+    # link-in-bio page (Instagram bio): src/link.html -> docs/link/index.html
+    link = open(os.path.join(ROOT, "src", "link.html"), encoding="utf-8").read().replace("{{DOMAIN}}", DOMAIN)
+    used |= set(re.findall(r'img/([\w.\-]+\.(?:jpg|png))', link))
+    os.makedirs(f"{DIST}/link")
+    open(f"{DIST}/link/index.html", "w", encoding="utf-8").write(link)
     for f in sorted(used):
         shutil.copy2(f"{IMG}/{f}", f"{DIST}/img/{f}")
     icons()
@@ -161,6 +166,7 @@ def main():
     <xhtml:link rel="alternate" hreflang="uz" href="{DOMAIN}/"/><xhtml:link rel="alternate" hreflang="ru" href="{DOMAIN}/ru/"/></url>
   <url><loc>{DOMAIN}/ru/</loc>
     <xhtml:link rel="alternate" hreflang="uz" href="{DOMAIN}/"/><xhtml:link rel="alternate" hreflang="ru" href="{DOMAIN}/ru/"/></url>
+  <url><loc>{DOMAIN}/link/</loc></url>
 </urlset>
 """
         open(f"{DIST}/sitemap.xml", "w").write(sm)
