@@ -29,13 +29,13 @@ META = {
     "uz": dict(
         html_lang="uz-Latn", og_locale="uz_UZ",
         title="Imperial Jalyuzi — jalyuzi va moskit setkalar Toshkentda | Plisse 100 000 so‘mdan",
-        desc="Imperial Jalyuzi — plisse, kombo (kun-tun), rollo, dikey, gorizontal va vertikal jalyuzi hamda moskit setkalar. "
+        desc="Imperial Jalyuzi — plisse, kombo (kun-tun), rollo, dikey, gorizontal va vertikal jalyuzi, rimskiy shtora hamda moskit setkalar. "
              "Toshkent shahri va viloyati. Toshkentda o‘lchov, yetkazish va o‘rnatish bepul. Plisse 1 m² — 100 000 so‘mdan.",
     ),
     "ru": dict(
         html_lang="ru", og_locale="ru_RU",
         title="Imperial Jalyuzi — жалюзи и москитные сетки в Ташкенте | Плиссе от 100 000 сум",
-        desc="Imperial Jalyuzi — плиссе, зебра «день-ночь», рулонные, дикей, горизонтальные и вертикальные жалюзи и москитные сетки. "
+        desc="Imperial Jalyuzi — плиссе, зебра «день-ночь», рулонные, дикей, горизонтальные и вертикальные жалюзи, римские шторы и москитные сетки. "
              "Ташкент и Ташкентская область. По Ташкенту замер, доставка и установка бесплатно. Плиссе от 100 000 сум за м².",
     ),
 }
