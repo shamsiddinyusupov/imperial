@@ -172,8 +172,11 @@ section { padding-block: 64px; }
 .st .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .st .feat { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .st .feat li { font-size: 12.5px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; color: var(--ink); }
-.st .inst { justify-self: start; margin-top: 4px; font: 500 11px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; background: var(--brass-soft); color: var(--ink); padding: 4px 9px; border-radius: 4px; }
-.st .body { padding: 14px 16px 16px; display: grid; gap: 7px; align-content: start; }
+.st .inst { align-self: flex-start; margin-top: 4px; font: 500 11px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; background: var(--brass-soft); color: var(--ink); padding: 4px 9px; border-radius: 4px; }
+.st .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 7px; }
+.st .real { margin: auto 0 0; padding-top: 8px; }
+.st .real figcaption { font: 500 11px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--brass); margin-bottom: 6px; }
+.st .real img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; }
 .st h3 { margin: 0; font-family: var(--f-display); font-weight: 500; font-size: 20px; }
 .st p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .st .fit { font: 500 11px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--brass); }
@@ -498,27 +501,32 @@ footer .wrap { display: flex; gap: 16px; justify-content: space-between; flex-wr
         <article class="st">
           <span class="art"><img src="img/st_standart.jpg" alt="Standart setka" data-i-alt="st1_name" loading="lazy" width="600" height="1000"></span>
           <div class="body"><span class="fit" data-i="st1_fit">Deraza uchun</span><h3 data-i="st1_name">Standart setka</h3><p data-i="st1_desc">Hasharotlardan oddiy va ishonchli himoya. Plastik birikmali mustahkam profil 4 burchagidan qotirgichlar bilan mahkamlanadi, kerak bo‘lsa yechib olinadi.</p>
-            <ul class="feat"><li data-i="st1_f1">Burchak qotirgichlari</li><li data-i="st1_f2">Tutqichlar</li></ul><span class="inst" data-i="st1_inst">Parmalab o‘rnatiladi</span></div>
+            <ul class="feat"><li data-i="st1_f1">Burchak qotirgichlari</li><li data-i="st1_f2">Tutqichlar</li></ul><span class="inst" data-i="st1_inst">Parmalab o‘rnatiladi</span>
+            <figure class="real"><figcaption data-i="st_real">O‘rnatilgan holati</figcaption><img src="img/st_standart_real.jpg" alt="O‘rnatilgan standart setka" data-i-alt="st1_real_alt" loading="lazy" width="600" height="750"></figure></div>
         </article>
         <article class="st">
           <span class="art"><img src="img/st_petlya.jpg" alt="Petlyali setka" data-i-alt="st2_name" loading="lazy" width="600" height="1000"></span>
           <div class="body"><span class="fit" data-i="st2_fit">Deraza va eshik uchun</span><h3 data-i="st2_name">Petlyali setka</h3><p data-i="st2_desc">Oshiq-moshiqlarda eshikdek ochilib-yopiladi — har safar yechib olish shart emas. Mustahkam plastik birikmalar uzoq xizmat qiladi.</p>
-            <ul class="feat"><li data-i="st2_f1">Qulflagich</li><li data-i="st2_f2">Petlyalar</li></ul><span class="inst" data-i="st2_inst">Parmalab o‘rnatiladi</span></div>
+            <ul class="feat"><li data-i="st2_f1">Qulflagich</li><li data-i="st2_f2">Petlyalar</li></ul><span class="inst" data-i="st2_inst">Parmalab o‘rnatiladi</span>
+            <figure class="real"><figcaption data-i="st_real">O‘rnatilgan holati</figcaption><img src="img/st_petlya_real.jpg" alt="O‘rnatilgan petlyali setka" data-i-alt="st2_real_alt" loading="lazy" width="600" height="750"></figure></div>
         </article>
         <article class="st">
           <span class="art"><img src="img/st_uni.jpg" alt="Uni setka" data-i-alt="st3_name" loading="lazy" width="600" height="1000"></span>
           <div class="body"><span class="fit" data-i="st3_fit">Deraza uchun</span><h3 data-i="st3_name">Uni setka</h3><p data-i="st3_desc">Universal himoya: mustahkam alyumin karkas, tashqi ta’sirga chidamli va uzoq xizmat qiladi. Yuqori va pastki qotirgichlarga parmalamasdan o‘rnatiladi.</p>
-            <ul class="feat"><li data-i="st3_f1">Yuqori qotirgichlar</li><li data-i="st3_f2">Tutqich</li><li data-i="st3_f3">Pastki qotirgichlar</li></ul><span class="inst" data-i="st3_inst">Parmalamasdan o‘rnatiladi</span></div>
+            <ul class="feat"><li data-i="st3_f1">Yuqori qotirgichlar</li><li data-i="st3_f2">Tutqich</li><li data-i="st3_f3">Pastki qotirgichlar</li></ul><span class="inst" data-i="st3_inst">Parmalamasdan o‘rnatiladi</span>
+            <figure class="real"><figcaption data-i="st_real">O‘rnatilgan holati</figcaption><img src="img/st_uni_real.jpg" alt="O‘rnatilgan Uni setka" data-i-alt="st3_real_alt" loading="lazy" width="600" height="750"></figure></div>
         </article>
         <article class="st">
           <span class="art"><img src="img/st_surma_oyna.jpg" alt="Surma setka — deraza" data-i-alt="st4_name" loading="lazy" width="600" height="1000"></span>
           <div class="body"><span class="fit" data-i="st4_fit">Tepadan pastga suriladi</span><h3 data-i="st4_name">Surma setka — deraza</h3><p data-i="st4_desc">Plisse to‘r tepadan pastga suriladi va kerakli joyda to‘xtaydi, ixcham yig‘iladi. Mustahkam alyumin karkas.</p>
-            <ul class="feat"><li data-i="st4_f1">Gorizontal tutqich</li><li data-i="st4_f2">Deraza karkasi</li></ul><span class="inst" data-i="st4_inst">Parmalab yoki parmalamasdan</span></div>
+            <ul class="feat"><li data-i="st4_f1">Gorizontal tutqich</li><li data-i="st4_f2">Deraza karkasi</li></ul><span class="inst" data-i="st4_inst">Parmalab yoki parmalamasdan</span>
+            <figure class="real"><figcaption data-i="st_real">O‘rnatilgan holati</figcaption><img src="img/st_surma_oyna_real.jpg" alt="Derazaga o‘rnatilgan surma setka" data-i-alt="st4_real_alt" loading="lazy" width="600" height="750"></figure></div>
         </article>
         <article class="st">
           <span class="art"><img src="img/st_surma_eshik.jpg" alt="Surma setka — eshik" data-i-alt="st5_name" loading="lazy" width="600" height="1000"></span>
           <div class="body"><span class="fit" data-i="st5_fit">Yonga suriladi</span><h3 data-i="st5_name">Surma setka — eshik</h3><p data-i="st5_desc">Plisse to‘r yonga suriladi, qulay joyda to‘xtaydi va ko‘p joy egallamaydi. Mustahkam alyumin karkas.</p>
-            <ul class="feat"><li data-i="st5_f1">Vertikal tutqich</li><li data-i="st5_f2">Eshik karkasi</li></ul><span class="inst" data-i="st5_inst">Parmalab yoki parmalamasdan</span></div>
+            <ul class="feat"><li data-i="st5_f1">Vertikal tutqich</li><li data-i="st5_f2">Eshik karkasi</li></ul><span class="inst" data-i="st5_inst">Parmalab yoki parmalamasdan</span>
+            <figure class="real"><figcaption data-i="st_real">O‘rnatilgan holati</figcaption><img src="img/st_surma_eshik_real.jpg" alt="Eshikka o‘rnatilgan surma setka" data-i-alt="st5_real_alt" loading="lazy" width="600" height="750"></figure></div>
         </article>
       </div>
 
@@ -779,6 +787,7 @@ Ya 10:00–18:00</span></div>
       faq7_q: "Moskit setka ham o‘rnatasizlarmi?", faq7_a: "Ha: standart, petlyali, Uni va surma setkalar (deraza uchun tepadan pastga, eshik uchun yonga suriladigan). Setka matosi — standart, anti-pyl, anti-smog yoki anti-koshka.",
       st_eyebrow: "Moskit setkalar", st_h2: "Chivinsiz yoz: deraza va eshiklarga setka",
       st_sub: "Avval o‘rnatish usulini, keyin setka matosini tanlang — har bir deraza va eshikka o‘lchab tayyorlaymiz.",
+      st_real: "O‘rnatilgan holati", st1_real_alt: "O‘rnatilgan standart setka", st2_real_alt: "O‘rnatilgan petlyali setka", st3_real_alt: "O‘rnatilgan Uni setka", st4_real_alt: "Derazaga o‘rnatilgan surma setka", st5_real_alt: "Eshikka o‘rnatilgan surma setka",
       st1_name: "Standart setka",
       st1_fit: "Deraza uchun",
       st1_desc: "Hasharotlardan oddiy va ishonchli himoya. Plastik birikmali mustahkam profil 4 burchagidan qotirgichlar bilan mahkamlanadi, kerak bo‘lsa yechib olinadi.",
@@ -887,6 +896,7 @@ Ya 10:00–18:00</span></div>
       faq7_q: "Вы ставите москитные сетки?", faq7_a: "Да: стандартные, на петлях, УНИ и раздвижные (на окна — сверху вниз, на двери — в сторону). Полотно — стандарт, антипыль, антисмог или антикошка.",
       st_eyebrow: "Москитные сетки", st_h2: "Лето без комаров: сетки на окна и двери",
       st_sub: "Выберите способ установки и полотно — изготовим по размерам каждого окна и двери.",
+      st_real: "Как это выглядит после установки", st1_real_alt: "Установленная стандартная сетка", st2_real_alt: "Установленная сетка на петлях", st3_real_alt: "Установленная сетка Uni", st4_real_alt: "Раздвижная сетка на окне", st5_real_alt: "Раздвижная сетка на двери",
       st1_name: "Стандартная сетка",
       st1_fit: "Для окон",
       st1_desc: "Простая и надёжная защита от насекомых. Прочный профиль с пластиковыми соединениями крепится фиксаторами по 4 углам и при необходимости снимается.",
