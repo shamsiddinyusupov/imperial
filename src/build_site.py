@@ -8,6 +8,7 @@ docs/favicon.png, apple-touch-icon.png, robots.txt, sitemap.xml, .nojekyll
 Usage (from the repo root):  python3 src/build_site.py [https://your-domain.uz]
 Default domain: https://shamsiddinyusupov.github.io/imperial
 """
+import datetime
 import json
 import os
 import re
@@ -160,13 +161,15 @@ def main():
     robots = "User-agent: *\nAllow: /\n"
     if DOMAIN:
         robots += f"\nSitemap: {DOMAIN}/sitemap.xml\n"
+        # lastmod = build date (Tashkent) so Google sees the pages as updated and recrawls them
+        lm = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5)).strftime("%Y-%m-%d")
         sm = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url><loc>{DOMAIN}/</loc>
+  <url><loc>{DOMAIN}/</loc><lastmod>{lm}</lastmod>
     <xhtml:link rel="alternate" hreflang="uz" href="{DOMAIN}/"/><xhtml:link rel="alternate" hreflang="ru" href="{DOMAIN}/ru/"/></url>
-  <url><loc>{DOMAIN}/ru/</loc>
+  <url><loc>{DOMAIN}/ru/</loc><lastmod>{lm}</lastmod>
     <xhtml:link rel="alternate" hreflang="uz" href="{DOMAIN}/"/><xhtml:link rel="alternate" hreflang="ru" href="{DOMAIN}/ru/"/></url>
-  <url><loc>{DOMAIN}/link/</loc></url>
+  <url><loc>{DOMAIN}/link/</loc><lastmod>{lm}</lastmod></url>
 </urlset>
 """
         open(f"{DIST}/sitemap.xml", "w").write(sm)
