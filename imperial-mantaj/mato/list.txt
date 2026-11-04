@@ -1,0 +1,10 @@
+file seg/H1.mp4
+file seg/H2.mp4
+file seg/H3.mp4
+file seg/A1.mp4
+file seg/A2.mp4
+file seg/B1.mp4
+file seg/B2.mp4
+file seg/C1.mp4
+file seg/C2.mp4
+file seg/P.mp4

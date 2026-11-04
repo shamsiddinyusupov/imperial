@@ -1,0 +1,10 @@
+file seg3/H.mp4
+file seg3/W1.mp4
+file seg3/W2.mp4
+file seg3/W3.mp4
+file seg3/W4.mp4
+file seg3/G1.mp4
+file seg3/G2.mp4
+file seg3/G3.mp4
+file seg3/W5.mp4
+file seg/D2.mp4

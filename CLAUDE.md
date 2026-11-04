@@ -2,6 +2,7 @@
 
 The owner (media manager of Imperial Jalyuzi, Tashkent blinds company) writes in Uzbek; reply in Uzbek unless they write in another language.
 When they say **"imperial website"**, this repo is the site. Full business facts, Google/Maps texts and open items live in the claude.ai Project doc `claude/imperial-website.md`.
+When they say **"imperial mantaj"**, go back to the saved Reels montage style and toolkit: restore `imperial-mantaj/` into `/home/claude/reels/` (commands in `imperial-mantaj/README.md`) and follow the `imperial-reels` skill. Only code lives there — never commit clips, photos, voice or rendered videos.
 
 ## Live
 - Uzbek: https://shamsiddinyusupov.github.io/imperial/
@@ -15,6 +16,7 @@ When they say **"imperial website"**, this repo is the site. Full business facts
 - `src/img/` — every image the source uses.
 - `src/build_site.py` — renders both languages with Playwright and writes `docs/` (pre-rendered text for SEO, head meta, canonical/hreflang, JSON-LD, favicon, robots.txt, sitemap.xml, .nojekyll).
 - `docs/` — generated output. Never edit by hand.
+- `imperial-mantaj/` — Reels montage toolkit (scripts only, not served by Pages); see its README.
 
 ## Change → publish
 1. Edit `src/imperial-sayt.html` (and add images to `src/img/`).

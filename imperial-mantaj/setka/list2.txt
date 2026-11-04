@@ -1,0 +1,9 @@
+file seg2/H.mp4
+file seg2/CL.mp4
+file seg2/SI.mp4
+file seg2/S1.mp4
+file seg2/S2.mp4
+file seg2/S3.mp4
+file seg2/S4.mp4
+file seg2/S5.mp4
+file seg2/EN.mp4
