@@ -20,13 +20,16 @@ D = "/home/claude/reels/trailer"
 W, H, FPS, SR = 1080, 1920, 30, 48000
 BAR = 170
 # (kind, name, t0, t1): kind 'card' = black, 'shot' = seg/<name>.mp4 from its start
-TL = [("card", "C0", 0.0, 1.8), ("shot", "S1", 1.8, 4.7), ("card", "C1", 4.7, 5.9), ("shot", "S2", 5.9, 8.6),
-      ("card", "C2", 8.6, 9.8), ("shot", "S3", 9.8, 11.3), ("shot", "S4", 11.3, 12.8), ("shot", "S5", 12.8, 14.3),
-      ("shot", "S6", 14.3, 18.4), ("card", "SIL", 18.4, 18.8), ("shot", "S7", 18.8, 20.9), ("card", "END", 20.9, 26.4)]
+TL = [("card", "C0", 0.0, 1.8), ("shot", "S1", 1.8, 5.8), ("card", "C1", 5.8, 7.0), ("shot", "S2", 7.0, 10.2),
+      ("card", "C2", 10.2, 11.4), ("shot", "S3", 11.4, 14.0), ("shot", "S4", 14.0, 16.6), ("shot", "S5", 16.6, 19.2),
+      ("shot", "S6", 19.2, 20.6), ("shot", "S7", 20.6, 22.0), ("shot", "S8", 22.0, 23.4),
+      ("shot", "R1", 23.4, 25.0), ("shot", "R2", 25.0, 26.3), ("shot", "R3", 26.3, 27.5), ("shot", "R4", 27.5, 28.6),
+      ("card", "SIL", 28.6, 29.0), ("shot", "HERO", 29.0, 32.4), ("card", "END", 32.4, 38.4)]
 TOTAL = TL[-1][3]
 CREAM, CARAMEL, DIM = (240, 232, 218), (204, 170, 124), (150, 142, 130)
 PAD = 24
-WORDS = {"S3": "Yorug‘lik.", "S4": "Sokinlik.", "S5": "Did."}
+WORDS = {"S6": "Yorug‘lik.", "S7": "Sokinlik.", "S8": "Did."}
+LINES = {"S3": "Biri — yorug‘likni sevadi.", "S4": "Biri — sokinlikni.", "S5": "Hammasi — didni."}
 
 
 def ease(x):
@@ -52,6 +55,7 @@ class Ov:
         self.c1 = text_img("Har bir derazaning…", ITA(70), CREAM)
         self.c2 = text_img("…o‘z hikoyasi bor.", ITA(70), CREAM)
         self.words = {k: soft_shadow(soft_shadow(text_img(v, DID(132), CREAM), 26, 0.7), 10, 0.5) for k, v in WORDS.items()}
+        self.lines = {k: soft_shadow(soft_shadow(text_img(v, ITA(62), CREAM), 22, 0.7), 8, 0.5) for k, v in LINES.items()}
         self.imp = text_img("IMPERIAL", DID(150), CREAM, 0.16)
         self.jal = text_img("JALYUZI", LAB(26), CARAMEL, 0.9)
         self.f1 = text_img("Toshkentda o‘lchov va o‘rnatish bepul  ·  1 yil kafolat", LIG(28), DIM)
@@ -67,11 +71,23 @@ class Ov:
             dr = ImageDraw.Draw(L)
             if name in self.words:                             # dim the bright fabric so the word reads
                 dr.rectangle((0, BAR, W, H - BAR), fill=(14, 10, 6, 105))
+            if name in self.lines:
+                g = Image.new("L", (W, H), 0)
+                ImageDraw.Draw(g).rectangle((0, 1300, W, H - BAR), fill=150)
+                from PIL import ImageFilter
+                g = g.filter(ImageFilter.GaussianBlur(90))
+                sh = Image.new("RGBA", (W, H), (10, 8, 6, 0))
+                sh.putalpha(g)
+                L.alpha_composite(sh)
+                dr = ImageDraw.Draw(L)
             dr.rectangle((0, 0, W, BAR), fill=(0, 0, 0, 255))
             dr.rectangle((0, H - BAR, W, H), fill=(0, 0, 0, 255))
             if name in self.words:
                 a = min(ease(u / 0.12), 1 - ease((u - (d - 0.25)) / 0.25))
                 centre(L, fade(self.words[name], a), 880)
+            if name in self.lines:
+                a = min(ease((u - 0.2) / 0.4), 1 - ease((u - (d - 0.4)) / 0.4))
+                centre(L, fade(self.lines[name], a), 1480)
             return L
         if name == "C0":
             centre(L, fade(self.c0, min(ease((u - 0.3) / 0.5), 1 - ease((u - 1.35) / 0.4))), 945)
@@ -201,26 +217,31 @@ def sound():
         L[i:j] += sig[: j - i] * g * (1 - pan) ** 0.5
         R[i:j] += sig[: j - i] * g * (1 + pan) ** 0.5
 
-    t = np.arange(int(18.4 * SR)) / SR
-    drone = (np.sin(2 * np.pi * hz(26) * t) + 0.5 * np.sin(2 * np.pi * hz(38) * t)) * np.clip(t / 6, 0, 1) ** 1.2
+    t = np.arange(int(28.6 * SR)) / SR
+    drone = (np.sin(2 * np.pi * hz(26) * t) + 0.5 * np.sin(2 * np.pi * hz(38) * t)) * np.clip(t / 8, 0, 1) ** 1.2
     air = lp(np.random.default_rng(3).normal(0, 1, len(t)), 500) * np.clip(t / 10, 0, 1) * 0.4
-    add((drone * 0.5 + air) * np.clip((18.4 - t) / 0.02, 0, 1), 0.0, 0.32)
-    add(braam([38, 41, 45, 50], 3.0), 1.8, 0.55)                     # D minor
-    add(braam([34, 41, 46, 50], 3.0), 5.9, 0.55)                     # B♭
-    for k, tt in enumerate((9.8, 11.3, 12.8)):
+    add((drone * 0.5 + air) * np.clip((28.6 - t) / 0.02, 0, 1), 0.0, 0.32)
+    add(braam([38, 41, 45, 50], 3.4), 1.8, 0.55)                     # D minor
+    add(braam([34, 41, 46, 50], 3.4), 7.0, 0.55)                     # B flat
+    for tt in (11.4, 14.0, 16.6):                                    # soft pulses under the three lines
+        add(boom(1.6, 0.5), tt, 0.35)
+    add(choir([57, 62, 65, 69], 7.8, att=2.0, rel=1.5), 11.4, 0.16)  # low choir bed under the lines
+    for k, tt in enumerate((19.2, 20.6, 22.0)):
         add(swell(0.45, k), tt - 0.45, 0.25)
         add(boom(2.2, 0.8), tt, 0.85)
-    r = riser(4.1)
+    r = riser(5.2)
     r[-int(0.01 * SR):] *= np.linspace(1, 0, int(0.01 * SR))
-    add(r, 14.3, 0.45)
-    add(boom(3.2, 1.4), 18.8, 1.0)
-    add(braam([38, 42, 45, 50], 4.0, 0.3), 18.8, 0.6)                 # D major — the turn to light
-    add(choir([62, 66, 69, 74], TOTAL - 18.9 + 1.5), 18.9, 0.35)
+    add(r, 23.4, 0.45)
+    for tt in (25.0, 26.3, 27.5):                                    # ticks on the quick cuts
+        add(boom(0.5, 0.25), tt, 0.3)
+    add(boom(3.2, 1.4), 29.0, 1.0)
+    add(braam([38, 42, 45, 50], 4.0, 0.3), 29.0, 0.6)                 # D major — the turn to light
+    add(choir([62, 66, 69, 74], TOTAL - 29.1 + 1.5), 29.1, 0.35)
     wl, wr = fftconvolve(L, hall(11))[:n], fftconvolve(R, hall(12))[:n]
     L, R = L * 0.8 + wl * 0.45, R * 0.8 + wr * 0.45
     m = int(TOTAL * SR)
     L, R = L[:m], R[:m]
-    s0, s1 = int(18.4 * SR), int(18.8 * SR)                          # the silence beat stays silent
+    s0, s1 = int(28.6 * SR), int(29.0 * SR)                          # the silence beat stays silent
     L[s0:s1] *= 0.02
     R[s0:s1] *= 0.02
     fo = int(1.8 * SR)
@@ -261,7 +282,7 @@ def final():
                     "-pix_fmt", "yuv420p", "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709",
                     "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", out + ".tmp.mp4"], check=True)
     os.replace(out + ".tmp.mp4", out)
-    subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", "19.6", "-i", out, "-frames:v", "1", "-q:v", "2",
+    subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", "30.6", "-i", out, "-frames:v", "1", "-q:v", "2",
                     f"{D}/out/imperial_kino_treyler_muqova.jpg"], check=True)
     print("final ok")
 

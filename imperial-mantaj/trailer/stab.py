@@ -47,14 +47,20 @@ OW, OH = 1080, 1920
 K = 4                        # analysis is done at FW/K x FH/K
 FPS = 30
 # video shots: (clip, start, seconds, speed, max polynomial degree)
-VID = {   # (clip file, start, seconds, speed, max degree, grade)
-    "S1": ("20260325_133852.mp4", 3.9, 2.9, 1.0, 2, "c"),    # ornate ceiling -> chandelier reveal
-    "S2": ("20260325_133634.mp4", 84.6, 2.7, 1.0, 1, "c"),   # walnut windows with plisse (pan)
-    "S3": ("IMG_5497.mov", 1.0, 1.5, 1.0, 1, "c"),           # white dikey, bright
-    "S4": ("IMG_5504.mov", 2.0, 1.5, 1.0, 1, "c"),           # dikey room with crystal chandelier
-    "S5": ("IMG_5496.mov", 0.3, 1.5, 1.0, 1, "c"),           # gold-leaf dikey detail
-    "S6": ("20260325_133852.mp4", 15.4, 4.1, 1.0, 2, "c"),   # ceiling rings -> chandeliers and windows
-    "S7": ("20260325_133634.mp4", 19.9, 2.1, 1.0, 1, "c"),   # window with plisse — final hero
+VID = {   # (clip file, start, seconds, speed, max degree, grade)  — v2: the classic hall appears once
+    "S1": ("20260325_133852.mp4", 3.6, 4.0, 1.0, 2, "c"),    # ornate ceiling -> chandelier reveal (only hall shot)
+    "S2": ("IMG_5533.mov", 6.0, 3.2, 1.0, 2, "c"),           # light through tulle, brown lamellas
+    "S3": ("IMG_5454.mov", 1.5, 2.6, 1.0, 2, "c"),           # bright room, white plisse
+    "S4": ("IMG_4421.mov", 0.6, 2.6, 1.0, 2, "c"),           # dark plisse on dark frames
+    "S5": ("IMG_5498.mov", 4.0, 2.6, 1.0, 2, "c"),           # white dikey with a gold panel
+    "S6": ("IMG_5535.mov", 9.0, 1.4, 1.0, 1, "c"),           # hit 1
+    "S7": ("IMG_5459.mov", 1.0, 1.4, 1.0, 1, "c"),           # hit 2
+    "S8": ("IMG_5496.mov", 4.5, 1.4, 1.0, 1, "c"),           # hit 3
+    "R1": ("IMG_5536.mov", 1.0, 1.6, 1.0, 1, "c"),           # riser montage
+    "R2": ("IMG_5453.mov", 2.0, 1.3, 1.0, 1, "c"),
+    "R3": ("IMG_5534.mov", 6.0, 1.2, 1.0, 1, "c"),
+    "R4": ("IMG_5497.mov", 4.0, 1.1, 1.0, 1, "c"),
+    "HERO": ("IMG_5680.mov", 0.6, 3.4, 1.0, 2, "c"),        # walnut window with plisse — final
 }
 PHO = {}
 ENC = ["-c:v", "libx264", "-preset", "fast", "-crf", "14", "-pix_fmt", "yuv420p", "-r", str(FPS)]
