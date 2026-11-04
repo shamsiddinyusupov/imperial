@@ -34,6 +34,7 @@ Latin Modern Roman 17, TeX Gyre Pagella Italic, Inter Display, Lora Italic.
 | `dikey_style/` | Hozirgi uslubning asosi: `grade.py` (oq rang + «Iliq krem»), `stab.py` (OpenCV barqarorlashtirish, rasmlarga sekin harakat), `faqat_qarang.py` (Didone/kursiv matn qatlamlari, 2 animatsiya), `style_test.py` (kadrdan palitra), `mix.sh` |
 | `stereo/` | «Jalyuzi deganda…»: ovozli video, so‘zda kesish (`vo_sync.py`, `timing.json`), 4:3 ramka ochilishi, `stab.py`, `mix.sh` |
 | `ikki_xona/` | «Ikki xona» (4.11.2026): ikki xona — kombo neytral rang, plisse iliq krem; bo‘lingan ekran ilmog‘i; qatlamlar alohida (V1 sahnalar 0,5 s zaxira bilan, V2 matn ProRes 4444 alfa, A1 musiqa) va `resolve_build.py` — DaVinci Resolve konsolida (Py3) timeline yig‘adi |
+| `trailer/` | «Kino treyleri» (4.11.2026): qattiq kesishlar, qora kartalar, letterbox, kinematik iliq rang, original treyler ovozi (drone, braam, chuqur zarbalar, riser, sukut, xor) |
 | `incoming/` | Chuqurlik effekti (`demo_depth.py`) va sarlavha qoliplari A/B/C (`layouts.py`) |
 | `kombo4/`, `kombo_v3/` | Kombo variantlari (kulrang mato uchun neytral rang) |
 | `ads/` | Reklama versiyalari (izoh chaqirig‘i o‘chiriladi, «Pastdagi tugmani bosing») |
