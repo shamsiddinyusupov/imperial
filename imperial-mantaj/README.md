@@ -6,6 +6,13 @@ Uslub qoidalari: `imperial-reels` skili va Project hujjati `claude/kontent-reja.
 Bu yerda faqat kod va vaqt jadvallari bor. Kliplar, rasmlar, ovoz va tayyor videolar saqlanmaydi
 (egasi kliplarni chatga qayta yuboradi). Sayt bu papkani ko‘rsatmaydi: GitHub Pages faqat `docs/` dan ishlaydi.
 
+## Baza — egasining kompyuteri
+`C:\Users\shams\Videos\Imperial` (chat kompyuterga ulangan bo‘lsa, papkaga ruxsat so‘raladi):
+`01_Kliplar` (RAW, `sana_mahsulot` papkalari) · `02_Rasmlar` · `03_Ovoz` · `04_Musiqa` (ishlatilganlar) ·
+`05_Tayyor_Reels` (video + muqova + izoh) · `06_Reklama` · `07_Resolve` · `08_Referens`.
+Yangi kliplar shu yerdan olinadi, tayyor video shu yerga yoziladi (25 MB dan katta fayl — avval SendUserFile, keyin fileUuid bilan).
+DaVinci Resolve: bepul 21.0.3 (21.1+ ga yangilanmasin), ko‘prik — Workspace → Scripts → resolve_bridge.
+
 ## Tiklash (yangi sessiyada)
 
 Skriptlardagi yo‘llar `/home/claude/reels/...` ga yozilgan, shuning uchun o‘sha joyga ko‘chiriladi:
