@@ -37,6 +37,7 @@ Latin Modern Roman 17, TeX Gyre Pagella Italic, Inter Display, Lora Italic.
 | `kombo_yigil/` | «Kombo yig‘iladi» (4.11.2026, namuna: fasad qismlari uchib kelib yig‘iladi): `geom.py` chiziq chegaralarini topadi, `vfx.py` bo‘sh (quyosh tushgan) deraza chizadi va kasseta, 12 mato chizig‘i, planka, zanjirni uchirib joyiga qo‘yadi, kunduz → kechqurun; oxiri barqarorlashtirilgan haqiqiy kadrga (IMG_5681) aynan bir xil kadrda ulanadi (`stab.py`, sekin boshlanuvchi harakat) |
 | `kombo_rasm/` | Xuddi shu uslub egasining 3.11 dagi kombo rasmidan (butun deraza devor ichida ko‘rinadi — namunaga yaqinroq); chap/o‘ng chegaralar, sekin yaqinlashuvchi kamera |
 | `sotuv/` | Ikki sotuv Reels (6.11.2026, oxirgi kombo + plisse kadrlari): A «Olishdan oldin 3 savol» — chizilgan belgi (✓) bilan javoblar; B «Kunduzi / Kechqurun» — ekrandagi almashtirish tugmasi, kombo kunduzgi va kechki ko‘rinishi `kombo_rasm/vfx.py` sahnasidan |
+| `serial1/` | «Derazaning gapi bor» 1-qism (rasmli serial): ElevenLabs rasmlari (ai/s1–s3.png) sekin kamera bilan, Daniel ovozi (vo/narration.mp3) xatboshilarga bo‘linadi, haqiqiy kombo kadrlari, subtitr, `common/kalimba_bed.py` (kalimba + to‘q pad, Re minor → Fa major) |
 | `trailer/` | «Kino treyleri» (4.11.2026): qattiq kesishlar, qora kartalar, letterbox, kinematik iliq rang, original treyler ovozi (drone, braam, chuqur zarbalar, riser, sukut, xor) |
 | `incoming/` | Chuqurlik effekti (`demo_depth.py`) va sarlavha qoliplari A/B/C (`layouts.py`) |
 | `kombo4/`, `kombo_v3/` | Kombo variantlari (kulrang mato uchun neytral rang) |
