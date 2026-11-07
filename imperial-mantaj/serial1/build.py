@@ -43,6 +43,9 @@ MIN = {"s1": 5.0, "r1": 4.8, "r2": 3.4, "end": 6.5}
 LEAD = {0: 1.4}
 GAP = 0.55
 TEMPO = 1.04
+# this take (5.11, Daniel, eleven_v3): paragraph-ending pauses and line starts inside each paragraph (s, at TEMPO)
+BREAKS = [6.09, 16.10, 26.14, 28.83, 38.27, 42.16]
+LINE_OFFS = [[0, 3.43], [0, 3.22, 5.59], [0, 3.69], [0], [0, 3.71], [0], [0, 3.42]]
 
 
 def run(a):
@@ -82,6 +85,11 @@ def split(x, n):
     first = int(np.argmax(v))
     last = len(v) - int(np.argmax(v[::-1]))
     inner = [(a, b) for a, b in runs if a > first and b < last]
+    if BREAKS:
+        sec = hop / SR
+        br = [min(inner, key=lambda r: abs(r[0] * sec - b)) for b in BREAKS]
+        edges = [first] + [e for r in br for e in r] + [last]
+        return [(edges[2 * k] * hop, edges[2 * k + 1] * hop) for k in range(n)]
     total_chars = [sum(len(s) for s in p) for p in SUBS[:n]]
     cum = np.cumsum(total_chars)[:-1] / sum(total_chars)
     span = last - first
@@ -119,7 +127,8 @@ def vo(dummy=False):
         out = np.zeros(int((total + 1) * SR), np.float32)
         for k, (a, b) in enumerate(paras):
             i = int(tl[k]["vo"] * SR)
-            out[i:i + (b - a)] += x[a:b]
+            seg = x[a:b]
+            out[i:i + len(seg)] += seg[:len(out) - i]
         pcm = (np.clip(out, -1, 1) * 32767).astype(np.int16)
         with wave.open(f"{D}/vo/vo_track.wav", "wb") as w:
             w.setnchannels(1)
@@ -178,9 +187,9 @@ def segs():
     # r1: the kombo assembling (vfx 2.2 s ..), r2: day -> evening (vfx .. 10.2), r3: the owner's photo at evening
     r1 = L["r1"]
     clip(KR_VFX, max(0.0, 7.2 - r1), r1, f"{D}/seg/r1.mp4")
-    r2 = L["r2"]
-    sp = min(1.0, 3.0 / r2) if r2 > 3.0 else 1.0
-    clip(KR_VFX, 10.2 - 3.0, r2, f"{D}/seg/r2.mp4", speed=sp)
+    r2 = L["r2"]          # the same photo, day -> evening switch at 8.2 s of B_k: lands on «Kechqurun…»
+    off = LINE_OFFS[4][1] + (tl["r2"]["vo"] - tl["r2"]["start"]) - 0.45
+    clip("/home/claude/reels/sotuv/seg/B_k.mp4", max(0.0, min(8.2 - off, 14.0 - r2)), r2, f"{D}/seg/r2.mp4")
     r3 = L["r3"]
     sp3 = min(1.0, 3.8 / r3)
     clip(EVE_PUSH, 0.0, r3, f"{D}/seg/r3.mp4", speed=sp3)
@@ -269,9 +278,12 @@ class Ov:
             K = Image.new("RGBA", (W, H), (0, 0, 0, 0))
             K.alpha_composite(self.sc)
             lines = self.subs[k]
+            offs = LINE_OFFS[k]
             y = 1560 - (len(lines) - 1) * 30 - (len(lines)) * 26
-            for im in lines:
-                K.alpha_composite(im, ((W - im.width) // 2, y - PAD))
+            for j, im in enumerate(lines):
+                la = ease((t - (s["vo"] + offs[j] - 0.12)) / 0.3)
+                if la > 0:
+                    K.alpha_composite(fade(im, la), ((W - im.width) // 2, y - PAD + int(6 * (1 - la))))
                 y += 60
             L.alpha_composite(fade(K, a))
         # end card
@@ -318,9 +330,10 @@ def ov():
                           "-r", str(FPS), "-i", "-", "-c:v", "prores_ks", "-profile:v", "4444", "-pix_fmt", "yuva444p10le",
                           "-vendor", "apl0", out + ".tmp.mov"], stdin=subprocess.PIPE)
     from multiprocessing import Pool
-    with Pool(3, initializer=_init) as pool:
-        for b in pool.imap(_job, range(n), chunksize=4):
-            p.stdin.write(b)
+    with Pool(3, initializer=_init) as pool:          # bounded batches: the encoder is slower than the workers
+        for i0 in range(0, n, 24):
+            for b in pool.map(_job, range(i0, min(n, i0 + 24))):
+                p.stdin.write(b)
     p.stdin.close()
     if p.wait() == 0:
         os.replace(out + ".tmp.mov", out)
