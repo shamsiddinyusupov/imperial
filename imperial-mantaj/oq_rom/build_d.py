@@ -1,4 +1,4 @@
-"""«Oldin / Keyin» — old worn blinds (removed) -> new Imperial plisse. Sales, no voice.
+"""«Oldin / Keyin» — old blinds due for renewal (removed) -> new Imperial plisse. Sales, no voice.
 python3 build_d.py [base|prev t,t|ov|music|final|all]
 """
 import os
@@ -113,9 +113,9 @@ def frame(i):
         text(img, (90, 640), "Старые жалюзи устали?", MED(32), (225, 218, 205), a_in(t, 0.9) * al, 10)
         a2 = a_in(t, s_k2 + 0.3) * al
         grad(img, 1250, 1900, 0.82 * a2)
-        text(img, (86, 1480), "Bu derazada — eskirib,", SEMI(60), PAPER, a2, 14)
-        text(img, (86, 1556), "chirib qolgan jalyuzi edi.", SEMI(60), PAPER, a_in(t, s_k2 + 0.6) * al, 14)
-        text(img, (90, 1650), "Здесь висели старые, изношенные жалюзи.", MED(30), (215, 208, 196),
+        text(img, (86, 1480), "Bu derazadagi jalyuzining —", SEMI(60), PAPER, a2, 14)
+        text(img, (86, 1556), "yangilanish vaqti kelgan edi.", SEMI(60), PAPER, a_in(t, s_k2 + 0.6) * al, 14)
+        text(img, (90, 1650), "Старым жалюзи пришло время обновиться.", MED(30), (215, 208, 196),
              a_in(t, s_k2 + 0.9) * al, 10)
     # AFTER
     if s_p1 - 0.1 < t < s_sp + 0.3:
