@@ -14,6 +14,7 @@ sys.path.insert(0, "/home/claude/reels/qora_plisse")
 from build_b import GOLD, INK, LOGO, MED, MONO, PAPER, SEMI, SER, SERI, a_in, a_out, check, grad, text, topgrad  # noqa: E402
 sys.path.insert(0, "/home/claude/reels/common/brand")
 from brand import LOGO, LOGO_BOX, NAME, PHONE  # noqa: E402,F811
+from classic_style import ARROW, GOLD, INK, MED, MONO, PAPER, SEMI, SER, SERI, check, font_for, text  # noqa: E402,F811
 
 D = "/home/claude/reels/ornatish"
 W, H, FPS = 1080, 1920, 30
@@ -96,7 +97,7 @@ def progress(img, t, al):
             d.rounded_rectangle((sx, y, sx + segw * fr, y + 10), 5, fill=GOLD + (int(255 * al),))
         cur = t0 <= t < t1
         col = (GOLD if (cur or t >= t1) else (220, 214, 202)) + (int(255 * al * (1 if cur or t >= t1 else 0.65)),)
-        f = MONO(22)
+        f = MONO(20)
         s = f"{k + 1:02d} {LABS[k].upper()}"
         d.text((sx, y + 24), s, font=f, fill=col)
     img.alpha_composite(lay)
@@ -160,7 +161,7 @@ def frame(i):
                 cx = 210 + SEMI(56).getlength(word) + 6
                 d.line([(cx, 1260), (cx, 1320)], fill=(214, 140, 60, int(255 * af)), width=4)
             d.rounded_rectangle((780, 1255, 912, 1325), 35, fill=GOLD + (int(255 * af),))
-            d.text((846, 1290), "→", font=SEMI(44), fill=INK + (int(255 * af),), anchor="mm")
+            d.text((846, 1290), "→", font=ARROW, fill=INK + (int(255 * af),), anchor="mm")
             img.alpha_composite(lay)
         text(img, (W // 2, 1385), "Narx uchun izohga NARX yozing — direktga yuboramiz", MED(32), (230, 222, 208),
              a_in(t, S_END + 2.2), 10, anchor="ma")
