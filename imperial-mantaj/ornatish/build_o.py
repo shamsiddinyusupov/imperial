@@ -12,6 +12,8 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, "/home/claude/reels/common")
 sys.path.insert(0, "/home/claude/reels/qora_plisse")
 from build_b import GOLD, INK, LOGO, MED, MONO, PAPER, SEMI, SER, SERI, a_in, a_out, check, grad, text, topgrad  # noqa: E402
+sys.path.insert(0, "/home/claude/reels/common/brand")
+from brand import LOGO, LOGO_BOX, NAME, PHONE  # noqa: E402,F811
 
 D = "/home/claude/reels/ornatish"
 W, H, FPS = 1080, 1920, 30
@@ -107,7 +109,7 @@ def frame(i):
     if t < S_U1 + 0.3:
         al = a_out(t, S_U1 - 0.15, 0.2)
         topgrad(img, 1000, 0.75 * al)
-        text(img, (86, 300), "IMPERIAL · PLISSE", MONO(26), GOLD, a_in(t, 0) * al, 8, tracking=6)
+        text(img, (86, 300), NAME + " · PLISSE", MONO(26), GOLD, a_in(t, 0) * al, 8, tracking=6)
         text(img, (86, 360), "0 dan", SER(130), PAPER, a_in(t, 0.05, 0.35) * al, 18)
         text(img, (86, 495), "tayyorgacha.", SERI(130), GOLD, a_in(t, 0.25, 0.35) * al, 18)
         text(img, (90, 655), "Qanday o‘rnatamiz — oxirigacha ko‘ring.", MED(36), PAPER, a_in(t, 0.7) * al, 10)
@@ -138,9 +140,9 @@ def frame(i):
     if t > S_END - 0.2:
         a0 = a_in(t, S_END)
         lg = LOGO.copy()
-        lg.thumbnail((380, 180))
+        lg.thumbnail(LOGO_BOX)
         lg.putalpha(lg.split()[3].point(lambda v: int(v * a0)))
-        img.alpha_composite(lg, ((W - lg.width) // 2, 300))
+        img.alpha_composite(lg, ((W - lg.width) // 2, 265))
         text(img, (W // 2, 500), "Siz faqat tanlaysiz —", SER(76), PAPER, a_in(t, S_END + 0.15), 14, anchor="ma")
         text(img, (W // 2, 590), "qolganini biz qilamiz.", SERI(80), GOLD, a_in(t, S_END + 0.3), 14, anchor="ma")
         check(img, 150, 740, a_in(t, S_END + 0.5), "O‘lchov va o‘rnatish", "bepul · Замер и установка бесплатно")
@@ -164,7 +166,7 @@ def frame(i):
              a_in(t, S_END + 2.2), 10, anchor="ma")
         text(img, (W // 2, 1433), "Напишите NARX — пришлём цены в директ", MED(28), (200, 193, 181),
              a_in(t, S_END + 2.4), 10, anchor="ma")
-        text(img, (W // 2, 1580), "+998 33 751 11 88  ·  @imperial_jalyuzi_uz", MED(28), GOLD, a_in(t, S_END + 0.8), 8,
+        text(img, (W // 2, 1560), "📞".replace("📞", "") + PHONE, SEMI(46), GOLD, a_in(t, S_END + 0.8), 8,
              anchor="ma")
     return np.asarray(img)
 
@@ -193,7 +195,7 @@ def final():
        f"-filter_complex \"[0:v][1:v]overlay=0:0:format=auto,format=yuv420p[v];"
        f"[2:a]loudnorm=I=-15:TP=-1.5:LRA=9[a]\" -map \"[v]\" -map \"[a]\" -t {TOTAL:.3f} "
        f"-c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -color_primaries bt709 -color_trc bt709 -colorspace bt709 "
-       f"-c:a aac -b:a 192k -movflags +faststart {D}/out/imperial_plisse_0dan_tayyorgacha.mp4")
+       f"-c:a aac -b:a 192k -movflags +faststart {D}/out/classic_plisse_0dan_tayyorgacha.mp4")
 
 
 if __name__ == "__main__":

@@ -12,6 +12,8 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, "/home/claude/reels/common")
 sys.path.insert(0, "/home/claude/reels/qora_plisse")
 from build_b import GOLD, INK, LOGO, MED, MONO, PAPER, SEMI, SER, SERI, a_in, a_out, check, grad, text, topgrad  # noqa: E402
+sys.path.insert(0, "/home/claude/reels/common/brand")
+from brand import LOGO, LOGO_BOX, NAME, PHONE  # noqa: E402,F811
 
 D = "/home/claude/reels/oq_rom"
 W, H, FPS = 1080, 1920, 30
@@ -155,9 +157,9 @@ def frame(i):
     if t > s_end - 0.2:
         a0 = a_in(t, s_end)
         lg = LOGO.copy()
-        lg.thumbnail((380, 180))
+        lg.thumbnail(LOGO_BOX)
         lg.putalpha(lg.split()[3].point(lambda v: int(v * a0)))
-        img.alpha_composite(lg, ((W - lg.width) // 2, 300))
+        img.alpha_composite(lg, ((W - lg.width) // 2, 265))
         text(img, (W // 2, 500), "Eskisini yechamiz —", SER(76), PAPER, a_in(t, s_end + 0.15), 14, anchor="ma")
         text(img, (W // 2, 590), "yangisini o‘rnatamiz.", SERI(80), GOLD, a_in(t, s_end + 0.3), 14, anchor="ma")
         check(img, 150, 740, a_in(t, s_end + 0.5), "O‘lchov va o‘rnatish", "bepul · Замер и установка бесплатно")
@@ -181,7 +183,7 @@ def frame(i):
              a_in(t, s_end + 2.2), 10, anchor="ma")
         text(img, (W // 2, 1433), "Напишите NARX — пришлём цены в директ", MED(28), (200, 193, 181),
              a_in(t, s_end + 2.4), 10, anchor="ma")
-        text(img, (W // 2, 1580), "+998 33 751 11 88  ·  @imperial_jalyuzi_uz", MED(28), GOLD, a_in(t, s_end + 0.8), 8,
+        text(img, (W // 2, 1560), "📞".replace("📞", "") + PHONE, SEMI(46), GOLD, a_in(t, s_end + 0.8), 8,
              anchor="ma")
     return np.asarray(img)
 
@@ -213,7 +215,7 @@ def final():
        f"-filter_complex \"[0:v][1:v]overlay=0:0:format=auto,format=yuv420p[v];"
        f"[2:a]loudnorm=I=-15:TP=-1.5:LRA=9[a]\" -map \"[v]\" -map \"[a]\" -t {TOTAL:.3f} "
        f"-c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -color_primaries bt709 -color_trc bt709 -colorspace bt709 "
-       f"-c:a aac -b:a 192k -movflags +faststart {D}/out/imperial_oldin_keyin_plisse.mp4")
+       f"-c:a aac -b:a 192k -movflags +faststart {D}/out/classic_oldin_keyin_plisse.mp4")
 
 
 if __name__ == "__main__":
