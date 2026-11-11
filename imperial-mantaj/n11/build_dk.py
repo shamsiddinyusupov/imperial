@@ -57,7 +57,7 @@ def base():
                f"tpad=stop_mode=clone:stop_duration=4,trim=duration={d + 0.1:.2f},setpts=PTS-STARTPTS,gblur=sigma=16,"
                f"eq=brightness=-0.2:saturation=0.85,format=yuv420p\" {ENC} {out}")
         else:
-            sh(f"ffmpeg -nostdin -v error -y -ss {ss} -t {d / sp + 0.05:.3f} -i {D}/{src} -an -vf "
+            sh(f"ffmpeg -nostdin -v error -y -ss {ss} -t {d + 0.05:.3f} -i {D}/{src} -an -vf "
                f"\"setpts=PTS/{sp},fps=30,trim=duration={d / sp:.3f},setsar=1,format=yuv420p\" {ENC} {out}")
     ins = " ".join(f"-i {D}/bo/dk_{s[0]}.mp4" for s in SC)
     f = [f"[{i}:v]fps=30,setpts=PTS-STARTPTS,settb=AVTB[v{i}]" for i in range(len(SC))]
