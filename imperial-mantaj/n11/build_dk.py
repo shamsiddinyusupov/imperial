@@ -1,5 +1,7 @@
-"""«Oq dikey tyul — mayin yorug‘lik» (Jalyuzi Classic, dikey). Calm one-take formula: the tulle closes, stays,
-opens again (middle sped up), short title from frame 0, end card with an open/closed poll.
+"""«Oq tyul, chetida — to‘q tyul» (Jalyuzi Classic, dikey kombinatsiya). v2 (owner 11.11: more shots; the dark side
+panels are dark tulle, not curtains — the message is the white + dark tulle combination).
+wide: the tulle closes -> native-4K detail of white + dark tulle -> detail of the white tulle with light ->
+wide: it opens -> end card with an open/closed poll.
 python3 build_dk.py [base|prev t,t|ov|music|final|cover|all]
 """
 import os
@@ -19,17 +21,27 @@ from classic_style import CREAM, GOLD, INK, MED, MONO, PAPER, SEMI, SER, SERI, t
 
 D = "/home/claude/reels/n11"
 W, H, FPS = 1080, 1920, 30
-A_END, B_END, MID_SP = 4.3, 14.6, 1.6
-LA, LB, LC = A_END, (B_END - A_END) / MID_SP, 19.35 - B_END
-VID = LA + LB + LC
-XF = 0.4
-S_END = VID - XF
-END_D = 5.8
-TOTAL = S_END + END_D
-NF = int(round(TOTAL * FPS))
+# name, source, ss, dur, speed
+SC = [
+    ("close", "st/dk.mp4", 0.0, 4.3, 1.0),
+    ("d1", "st/dd1.mp4", 0.0, 3.5, 1.0),
+    ("d2", "st/dd2.mp4", 0.0, 3.1, 1.0),
+    ("open", "st/dk.mp4", 14.6, 4.75, 1.0),
+    ("end", "endbg", 0, 5.8, None),
+]
+TRANS = {1: "fade", 2: "slideleft", 3: "fade", 4: "fadeblack"}
+XFS = {1: 0.3, 2: 0.3, 3: 0.3, 4: 0.4}
 ENC = "-c:v libx264 -preset fast -crf 15 -pix_fmt yuv420p"
 SUB = (222, 212, 198)
-CHIMES = [(0.1, LA - 0.1), (LA + LB - 0.1, VID - 0.4)]
+
+ST, _t = [0.0], 0.0
+for i in range(1, len(SC)):
+    _t += SC[i - 1][3] - XFS[i]
+    ST.append(_t)
+TOTAL = ST[-1] + SC[-1][3]
+NF = int(round(TOTAL * FPS))
+S_CL, S_D1, S_D2, S_OP, S_END = ST
+CHIMES = [(0.1, SC[0][3] - 0.2), (S_D2 + 0.3, S_D2 + 2.6), (S_OP + 0.1, S_END - 0.2)]
 
 
 def sh(cmd):
@@ -38,20 +50,22 @@ def sh(cmd):
 
 def base():
     os.makedirs(f"{D}/bo", exist_ok=True)
-    src = f"{D}/st/dk.mp4"
-    f = (f"[0:v]split=3[a0][b0][c0];"
-         f"[a0]trim=0:{A_END},setpts=PTS-STARTPTS[a];"
-         f"[b0]trim={A_END}:{B_END},setpts=(PTS-STARTPTS)/{MID_SP}[b];"
-         f"[c0]trim={B_END}:19.35,setpts=PTS-STARTPTS[c];"
-         f"[a][b][c]concat=n=3:v=1:a=0,fps=30,format=yuv420p[v]")
-    sh(f"ffmpeg -nostdin -v error -y -i {src} -filter_complex \"{f}\" -map \"[v]\" -an {ENC} {D}/bo/dk_v.mp4")
-    sh(f"ffmpeg -nostdin -v error -y -ss 17.6 -i {src} -an -vf \"setpts=PTS/0.45,fps=30,tpad=stop_mode=clone:stop_duration=4,"
-       f"trim=duration={END_D + 0.1:.2f},setpts=PTS-STARTPTS,gblur=sigma=16,eq=brightness=-0.2:saturation=0.85,"
-       f"format=yuv420p\" {ENC} {D}/bo/dk_end.mp4")
-    sh(f"ffmpeg -nostdin -v error -y -i {D}/bo/dk_v.mp4 -i {D}/bo/dk_end.mp4 -filter_complex "
-       f"\"[0:v]fps=30,setpts=PTS-STARTPTS,settb=AVTB[x];[1:v]fps=30,setpts=PTS-STARTPTS,settb=AVTB[y];"
-       f"[x][y]xfade=transition=fadeblack:duration={XF}:offset={S_END:.3f},settb=AVTB[v]\" -map \"[v]\" -r 30 {ENC} "
-       f"{D}/base_dk.mp4")
+    for name, src, ss, d, sp in SC:
+        out = f"{D}/bo/dk_{name}.mp4"
+        if src == "endbg":
+            sh(f"ffmpeg -nostdin -v error -y -ss 17.6 -i {D}/st/dk.mp4 -an -vf \"setpts=PTS/0.45,fps=30,"
+               f"tpad=stop_mode=clone:stop_duration=4,trim=duration={d + 0.1:.2f},setpts=PTS-STARTPTS,gblur=sigma=16,"
+               f"eq=brightness=-0.2:saturation=0.85,format=yuv420p\" {ENC} {out}")
+        else:
+            sh(f"ffmpeg -nostdin -v error -y -ss {ss} -t {d / sp + 0.05:.3f} -i {D}/{src} -an -vf "
+               f"\"setpts=PTS/{sp},fps=30,trim=duration={d / sp:.3f},setsar=1,format=yuv420p\" {ENC} {out}")
+    ins = " ".join(f"-i {D}/bo/dk_{s[0]}.mp4" for s in SC)
+    f = [f"[{i}:v]fps=30,setpts=PTS-STARTPTS,settb=AVTB[v{i}]" for i in range(len(SC))]
+    prev = "[v0]"
+    for i in range(1, len(SC)):
+        f.append(f"{prev}[v{i}]xfade=transition={TRANS[i]}:duration={XFS[i]}:offset={ST[i]:.3f},settb=AVTB[x{i}]")
+        prev = f"[x{i}]"
+    sh(f"ffmpeg -nostdin -v error -y {ins} -filter_complex \"{';'.join(f)}\" -map \"{prev}\" -r 30 {ENC} {D}/base_dk.mp4")
 
 
 def pill(img, cx, cy, s, al, filled, pulse=0.0, w=250):
@@ -74,28 +88,28 @@ def pill(img, cx, cy, s, al, filled, pulse=0.0, w=250):
 
 
 def lower(img, t, t0, t1, top, rib, ru, y=1440):
-    al = a_in(t, t0 + 0.12, 0.4) * a_out(t, t1 - 0.25, 0.25)
+    al = a_in(t, t0 + 0.12, 0.35) * a_out(t, t1 - 0.2, 0.22)
     if al <= 0.01:
         return
     grad(img, 1150, 1920, 0.8 * al)
     text(img, (86, y), top, SEMI(62), PAPER, al, 14)
-    text(img, (98, y + 94), rib, SERI(76), GOLD, a_in(t, t0 + 0.35, 0.4) * a_out(t, t1 - 0.25, 0.25), 14)
-    text(img, (90, y + 218), ru, MED(30), SUB, a_in(t, t0 + 0.55, 0.4) * a_out(t, t1 - 0.25, 0.25), 10)
+    text(img, (98, y + 94), rib, SERI(76), GOLD, a_in(t, t0 + 0.3, 0.35) * a_out(t, t1 - 0.2, 0.22), 14)
+    text(img, (90, y + 218), ru, MED(30), SUB, a_in(t, t0 + 0.5, 0.35) * a_out(t, t1 - 0.2, 0.22), 10)
 
 
 def frame(i):
     t = i / FPS
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    if t < LA + 0.3:                                          # title while the tulle closes
-        al = a_out(t, LA - 0.3, 0.3)
-        topgrad(img, 900, 0.7 * al)
+    if t < S_D1 + 0.3:                                        # title while the tulle closes
+        al = a_out(t, S_D1 - 0.15, 0.25)
+        topgrad(img, 900, 0.72 * al)
         text(img, (86, 300), NAME + " · DIKEY", MONO(26), GOLD, a_in(t, 0, 0.3) * al, 8, tracking=6)
-        text(img, (86, 362), "Oq dikey tyul", SER(108), PAPER, a_in(t, 0.0, 0.3) * al, 18)
-        text(img, (100, 500), "mayin yorug‘lik.", SERI(88), GOLD, a_in(t, 0.5, 0.35) * al, 16)
-        text(img, (90, 630), "Белый вертикальный тюль — мягкий свет.", MED(32), SUB, a_in(t, 0.9) * al, 10)
-    lower(img, t, LA + 0.1, LA + LB - 0.1, "Oq tyul va to‘q parda —", "klassik juftlik.",
-          "Белый тюль и тёмные шторы — классика.")
-    lower(img, t, LA + LB + 0.2, S_END + 0.1, "Ochiq ham chiroyli,", "yopiq ham.", "Красиво — и открытым, и закрытым.")
+        text(img, (86, 362), "Oq tyul,", SER(112), PAPER, a_in(t, 0.0, 0.3) * al, 18)
+        text(img, (100, 504), "chetida — to‘q tyul.", SERI(82), GOLD, a_in(t, 0.5, 0.35) * al, 16)
+        text(img, (90, 630), "Белый тюль, по краям — тёмный.", MED(32), SUB, a_in(t, 0.9) * al, 10)
+    lower(img, t, S_D1, S_D2 + 0.1, "Ikki rang —", "bitta kombinatsiya.", "Два цвета — одна комбинация.")
+    lower(img, t, S_D2, S_OP + 0.1, "Oq tyul —", "mayin yorug‘lik.", "Белый тюль — мягкий свет.")
+    lower(img, t, S_OP, S_END + 0.1, "Ochiq ham chiroyli,", "yopiq ham.", "Красиво — и открытым, и закрытым.")
     if t > S_END - 0.2:
         a0 = a_in(t, S_END + 0.1)
         lg = LOGO.copy()
@@ -103,8 +117,8 @@ def frame(i):
         lg.putalpha(lg.split()[3].point(lambda v: int(v * a0)))
         img.alpha_composite(lg, ((W - lg.width) // 2, 215))
         text(img, (W // 2, 480), "Derazangizga ham", SER(66), PAPER, a_in(t, S_END + 0.25), 14, anchor="ma")
-        text(img, (W // 2, 570), "dikey tyul kerakmi?", SERI(72), GOLD, a_in(t, S_END + 0.4), 14, anchor="ma")
-        text(img, (W // 2, 690), "Нужен вертикальный тюль на ваше окно?", MED(30), SUB, a_in(t, S_END + 0.55), 10,
+        text(img, (W // 2, 570), "shunday kombinatsiya?", SERI(70), GOLD, a_in(t, S_END + 0.4), 14, anchor="ma")
+        text(img, (W // 2, 690), "Хотите такую же комбинацию на своё окно?", MED(30), SUB, a_in(t, S_END + 0.55), 10,
              anchor="ma")
         text(img, (W // 2, 800), "Deraza rasmini direktga yuboring", SEMI(42), PAPER, a_in(t, S_END + 0.8), 10,
              anchor="ma")
@@ -123,6 +137,8 @@ def frame(i):
 
 def render_ov():
     os.makedirs(f"{D}/ov_dk", exist_ok=True)
+    for f in os.listdir(f"{D}/ov_dk"):
+        os.remove(f"{D}/ov_dk/{f}")
     idx = list(range(NF))
     with Pool(6) as p:
         for k in range(0, len(idx), 24):
@@ -136,7 +152,7 @@ def music():
     airy_bed(f"{D}/bed_dk.wav", TOTAL, S_END, CHIMES)
 
 
-OUTN = "classic_dikey_oq_tyul"
+OUTN = "classic_dikey_kombinatsiya"
 
 
 def final():
@@ -158,7 +174,7 @@ def cover():
 
 if __name__ == "__main__":
     what = sys.argv[1] if len(sys.argv) > 1 else "all"
-    print("A/B/C", round(LA, 2), round(LB, 2), round(LC, 2), "end", round(S_END, 2), "total", round(TOTAL, 2))
+    print("starts", [round(x, 2) for x in ST], "total", round(TOTAL, 2))
     if what in ("base", "all"):
         base()
     if what == "prev":
