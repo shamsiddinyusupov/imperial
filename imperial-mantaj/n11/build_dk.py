@@ -1,4 +1,4 @@
-"""«Oq tyul, chetida — to‘q tyul» (Jalyuzi Classic, dikey kombinatsiya). v2 (owner 11.11: more shots; the dark side
+"""«Oq tyul, chetida — to‘q barxat» (Jalyuzi Classic, dikey kombinatsiya). v3: barxat (owner 11.11), shots from stab2.py. v2 (owner 11.11: more shots; the dark side
 panels are dark tulle, not curtains — the message is the white + dark tulle combination).
 wide: the tulle closes -> native-4K detail of white + dark tulle -> detail of the white tulle with light ->
 wide: it opens -> end card with an open/closed poll.
@@ -17,16 +17,16 @@ sys.path.insert(0, "/home/claude/reels/qora_plisse")
 from build_b import a_in, a_out, grad, topgrad  # noqa: E402
 sys.path.insert(0, "/home/claude/reels/common/brand")
 from brand import LOGO, NAME, PHONE  # noqa: E402
-from classic_style import CREAM, GOLD, INK, MED, MONO, PAPER, SEMI, SER, SERI, text  # noqa: E402
+from classic_style import CREAM, GOLD, INK, MED, MONO, PAPER, SEMI, SER, SERI, font_for, text  # noqa: E402
 
 D = "/home/claude/reels/n11"
 W, H, FPS = 1080, 1920, 30
 # name, source, ss, dur, speed
 SC = [
-    ("close", "st/dk.mp4", 0.0, 4.3, 1.0),
-    ("d1", "st/dd1.mp4", 0.0, 3.5, 1.0),
-    ("d2", "st/dd2.mp4", 0.0, 3.1, 1.0),
-    ("open", "st/dk.mp4", 14.6, 4.75, 1.0),
+    ("close", "st2/w_close.mp4", 0.0, 4.3, 1.0),
+    ("d1", "st2/d1.mp4", 0.0, 3.5, 1.0),
+    ("d2", "st2/d2.mp4", 0.0, 3.1, 1.0),
+    ("open", "st2/w_open.mp4", 0.0, 4.75, 1.0),
     ("end", "endbg", 0, 5.8, None),
 ]
 TRANS = {1: "fade", 2: "slideleft", 3: "fade", 4: "fadeblack"}
@@ -53,7 +53,7 @@ def base():
     for name, src, ss, d, sp in SC:
         out = f"{D}/bo/dk_{name}.mp4"
         if src == "endbg":
-            sh(f"ffmpeg -nostdin -v error -y -ss 17.6 -i {D}/st/dk.mp4 -an -vf \"setpts=PTS/0.45,fps=30,"
+            sh(f"ffmpeg -nostdin -v error -y -ss 3.0 -i {D}/st2/w_open.mp4 -an -vf \"setpts=PTS/0.45,fps=30,"
                f"tpad=stop_mode=clone:stop_duration=4,trim=duration={d + 0.1:.2f},setpts=PTS-STARTPTS,gblur=sigma=16,"
                f"eq=brightness=-0.2:saturation=0.85,format=yuv420p\" {ENC} {out}")
         else:
@@ -105,9 +105,16 @@ def frame(i):
         topgrad(img, 900, 0.72 * al)
         text(img, (86, 300), NAME + " · DIKEY", MONO(26), GOLD, a_in(t, 0, 0.3) * al, 8, tracking=6)
         text(img, (86, 362), "Oq tyul,", SER(112), PAPER, a_in(t, 0.0, 0.3) * al, 18)
-        text(img, (100, 504), "chetida — to‘q tyul.", SERI(82), GOLD, a_in(t, 0.5, 0.35) * al, 16)
-        text(img, (90, 630), "Белый тюль, по краям — тёмный.", MED(32), SUB, a_in(t, 0.9) * al, 10)
-    lower(img, t, S_D1, S_D2 + 0.1, "Ikki rang —", "bitta kombinatsiya.", "Два цвета — одна комбинация.")
+        text(img, (100, 504), "chetida — to‘q barxat.", SERI(80), GOLD, a_in(t, 0.5, 0.35) * al, 16)
+        ar = a_in(t, 0.9) * al
+        if ar > 0.01:
+            ru_ = "Белый тюль, по краям — тёмный бархат."
+            wdt = font_for(ru_, MED(32)).getlength(ru_)
+            lay = Image.new("RGBA", img.size, (0, 0, 0, 0))
+            ImageDraw.Draw(lay).rounded_rectangle((70, 620, 110 + wdt, 680), 30, fill=(24, 20, 17, int(170 * ar)))
+            img.alpha_composite(lay)
+        text(img, (90, 628), "Белый тюль, по краям — тёмный бархат.", MED(32), CREAM, ar, 0)
+    lower(img, t, S_D1, S_D2 + 0.1, "Tyul va barxat —", "bitta kombinatsiya.", "Тюль и бархат — одна комбинация.")
     lower(img, t, S_D2, S_OP + 0.1, "Oq tyul —", "mayin yorug‘lik.", "Белый тюль — мягкий свет.")
     lower(img, t, S_OP, S_END + 0.1, "Ochiq ham chiroyli,", "yopiq ham.", "Красиво — и открытым, и закрытым.")
     if t > S_END - 0.2:
