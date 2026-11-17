@@ -155,6 +155,10 @@ def main():
     used |= set(re.findall(r'img/([\w.\-]+\.(?:jpg|png))', link))
     os.makedirs(f"{DIST}/link")
     open(f"{DIST}/link/index.html", "w", encoding="utf-8").write(link)
+    # visual try-on + price page: src/primerka.html -> docs/primerka/index.html
+    prim = open(os.path.join(ROOT, "src", "primerka.html"), encoding="utf-8").read().replace("{{DOMAIN}}", DOMAIN)
+    os.makedirs(f"{DIST}/primerka")
+    open(f"{DIST}/primerka/index.html", "w", encoding="utf-8").write(prim)
     for f in sorted(used):
         shutil.copy2(f"{IMG}/{f}", f"{DIST}/img/{f}")
     icons()
@@ -170,6 +174,7 @@ def main():
   <url><loc>{DOMAIN}/ru/</loc><lastmod>{lm}</lastmod>
     <xhtml:link rel="alternate" hreflang="uz" href="{DOMAIN}/"/><xhtml:link rel="alternate" hreflang="ru" href="{DOMAIN}/ru/"/></url>
   <url><loc>{DOMAIN}/link/</loc><lastmod>{lm}</lastmod></url>
+  <url><loc>{DOMAIN}/primerka/</loc><lastmod>{lm}</lastmod></url>
 </urlset>
 """
         open(f"{DIST}/sitemap.xml", "w").write(sm)

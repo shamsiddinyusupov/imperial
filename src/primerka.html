@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="uz-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Imperial Primerka — derazangizda ko‘ring</title>
+<meta name="description" content="Imperial Primerka: derazangiz o‘lchamini kiriting, rom va mato rangini tanlang — jalyuzi o‘rnatilgan holatini va taxminiy narxini ko‘ring. Toshkent.">
+<link rel="canonical" href="{{DOMAIN}}/primerka/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Imperial Jalyuzi">
+<meta property="og:title" content="Imperial Primerka — jalyuzini derazangizda ko‘ring">
+<meta property="og:description" content="O‘lcham, rom rangi, mato rangi — va jalyuzi o‘rnatilgan ko‘rinish hamda taxminiy narx.">
+<meta property="og:url" content="{{DOMAIN}}/primerka/">
+<meta name="theme-color" content="#141311">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #141311; --card: #1C1A17; --ink: #F5F1E9; --soft: #CFC8BB; --muted: #B3AC9F; --gold: #D6B062; --gold-hi: #E8C97F; --line: #5A513F; --line2: #3A352C; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: calc(env(safe-area-inset-top, 0px) + 16px) 16px calc(env(safe-area-inset-bottom, 0px) + 28px); }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.brand { display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: inherit; }
+.brand b { font-family: Caladea, Georgia, serif; font-weight: 400; font-size: 20px; letter-spacing: .22em; }
+.brand span { font-size: 11px; letter-spacing: .26em; color: var(--muted); }
+.lang { display: flex; border: 1px solid #4A4438; border-radius: 999px; overflow: hidden; flex: none; }
+.lang button { background: transparent; color: var(--soft); border: 0; font-weight: 600; font-size: 12px; padding: 0 12px; min-width: 46px; min-height: 34px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: var(--bg); }
+.hero { text-align: center; margin: 22px 0 18px; }
+.hero .rule { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 14px; }
+h1 { margin: 0; font-family: Caladea, Georgia, serif; font-weight: 400; font-size: 30px; line-height: 1.15; }
+h1 em { color: var(--gold); }
+.hero p { margin: 10px auto 0; max-width: 520px; color: var(--soft); font-size: 14px; line-height: 1.55; }
+.grid { display: grid; gap: 18px; }
+@media (min-width: 860px) { .grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; } .view { position: sticky; top: 14px; } }
+.view { background: var(--card); border: 1px solid var(--line2); border-radius: 18px; padding: 12px; }
+.view svg { display: block; width: 100%; height: auto; border-radius: 12px; }
+.state { display: flex; align-items: center; gap: 12px; padding: 12px 4px 2px; }
+.state label { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.state input { flex: 1; accent-color: var(--gold); min-height: 30px; }
+.note { font-size: 12px; color: var(--muted); line-height: 1.5; margin: 8px 4px 0; }
+.panel { display: flex; flex-direction: column; gap: 16px; }
+.sec { display: flex; align-items: center; gap: 10px; }
+.sec span { font-size: 11px; letter-spacing: .24em; color: var(--gold); font-weight: 500; }
+.sec i { flex: 1; height: 1px; background: var(--line2); }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.f { display: flex; flex-direction: column; gap: 6px; }
+.f label { font-size: 12.5px; color: var(--muted); }
+.f input, .f select { background: #12110F; border: 1px solid var(--line); border-radius: 12px; min-height: 46px; padding: 0 12px; font-size: 16px; width: 100%; }
+.f input:focus, .f select:focus { outline: 2px solid var(--gold-hi); outline-offset: 1px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: transparent; border: 1px solid var(--line); border-radius: 999px; min-height: 40px; padding: 0 14px; font-size: 13.5px; cursor: pointer; color: var(--soft); }
+.chip[aria-pressed="true"] { border-color: var(--gold); background: rgba(214, 176, 98, .12); color: var(--ink); }
+.chip small { color: var(--muted); margin-left: 4px; }
+.sw { display: flex; flex-wrap: wrap; gap: 10px; }
+.sw button { width: 44px; height: 44px; border-radius: 50%; border: 2px solid transparent; padding: 3px; background: transparent; cursor: pointer; }
+.sw button i { display: block; width: 100%; height: 100%; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); }
+.sw button[aria-pressed="true"] { border-color: var(--gold); }
+.swname { font-size: 12.5px; color: var(--soft); margin-top: -4px; }
+.price { background: linear-gradient(180deg, rgba(214,176,98,.14), rgba(214,176,98,.04)); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+.price .l { font-size: 11px; letter-spacing: .22em; color: var(--gold); }
+.price .v { font-family: Caladea, Georgia, serif; font-size: 30px; margin: 6px 0 4px; }
+.price .m { font-size: 12.5px; color: var(--soft); line-height: 1.5; }
+.price .facts { font-size: 12.5px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+.acts { display: grid; gap: 10px; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 14px; min-height: 54px; padding: 0 16px; border: 1px solid var(--line); background: transparent; font-weight: 500; font-size: 15px; cursor: pointer; text-decoration: none; color: var(--ink); }
+.btn.main { background: var(--gold); border-color: var(--gold); color: var(--bg); font-weight: 600; }
+.btn.main:hover { background: var(--gold-hi); }
+.btn:not(.main):hover { border-color: var(--gold); }
+.status { font-size: 12.5px; color: var(--gold-hi); min-height: 18px; text-align: center; }
+.foot { text-align: center; margin-top: 26px; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+.foot a { color: var(--gold); text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../" data-home><b>IMPERIAL</b><span data-t="brand_s">JALYUZI · TOSHKENT</span></a>
+    <div class="lang" role="group" aria-label="Til / Язык">
+      <button type="button" data-lang="uz" aria-pressed="true">UZ</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="rule"></div>
+    <h1><span data-t="h1a">Primerka</span> — <em data-t="h1b">derazangizda ko‘ring</em></h1>
+    <p data-t="lead">O‘lchamni kiriting, rom va mato rangini tanlang — jalyuzi o‘rnatilgandan keyin qanday ko‘rinishini va taxminiy narxini darhol ko‘rasiz.</p>
+  </header>
+
+  <div class="grid">
+    <section class="view" aria-labelledby="view-h">
+      <h2 id="view-h" hidden data-t="view_h">Ko‘rinish</h2>
+      <svg id="scene" viewBox="0 0 400 440" role="img" aria-label=""></svg>
+      <div class="state">
+        <label for="c-open" data-t="st_open">Ochiq</label>
+        <input id="c-open" type="range" min="0" max="100" value="62" aria-describedby="st-hint">
+        <label data-t="st_closed">Yopiq</label>
+      </div>
+      <p class="note" id="st-hint" data-t="note_view">Rasm taxminiy: aniq rang va mato namunalarini usta o‘lchovga olib keladi.</p>
+    </section>
+
+    <section class="panel" aria-label="Tanlov">
+      <div class="sec"><span data-t="s_size">1 · O‘LCHAM</span><i></i></div>
+      <div class="fields">
+        <div class="f"><label for="c-w" data-t="f_w">Eni, sm</label><input id="c-w" type="number" inputmode="numeric" min="30" max="400" value="140"></div>
+        <div class="f"><label for="c-h" data-t="f_h">Bo‘yi, sm</label><input id="c-h" type="number" inputmode="numeric" min="30" max="350" value="150"></div>
+        <div class="f"><label for="c-s" data-t="f_s">Tabaqalar soni</label>
+          <select id="c-s"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+        <div class="f"><label for="c-n" data-t="f_n">Shunday derazalar</label><input id="c-n" type="number" inputmode="numeric" min="1" max="50" value="1"></div>
+      </div>
+      <div class="chips" role="group" aria-label="Deraza shakli" id="shape"></div>
+
+      <div class="sec"><span data-t="s_frame">2 · ROM RANGI</span><i></i></div>
+      <div class="sw" id="frames" role="group"></div>
+      <div class="swname" id="frame-name"></div>
+
+      <div class="sec"><span data-t="s_type">3 · JALYUZI TURI</span><i></i></div>
+      <div class="chips" id="types" role="group"></div>
+      <div class="chips" id="fabs" role="group" hidden></div>
+
+      <div class="sec"><span data-t="s_color">4 · MATO RANGI</span><i></i></div>
+      <div class="sw" id="colors" role="group"></div>
+      <div class="swname" id="color-name"></div>
+
+      <div class="price" aria-live="polite">
+        <div class="l" data-t="p_l">TAXMINIY NARX</div>
+        <div class="v" id="o-price"></div>
+        <div class="m" id="o-meta"></div>
+        <div class="facts" id="o-facts"></div>
+      </div>
+
+      <div class="acts">
+        <button class="btn main" type="button" id="b-send">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/><path d="M9 13l12-9"/></svg>
+          <span data-t="b_send">Telegram’da bepul o‘lchovga yozilish</span></button>
+        <button class="btn" type="button" id="b-img">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D6B062" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg>
+          <span data-t="b_img">Rasmni saqlash</span></button>
+        <div class="status" id="status" role="status"></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="foot">
+    <a href="https://t.me/jalyuzi_imperial">Telegram</a> · <a href="tel:+998337511188">+998 33 751 11 88</a> · <a href="https://www.instagram.com/imperial_jalyuzi_uz/">@imperial_jalyuzi_uz</a><br>
+    <span data-t="hours">Du–Sha 9:30–20:00 · Ya 10:00–18:00</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  // Imperial prices (owner, 28–29.10.2026). Plisse: per sash, billed at least 1 m²; others per m².
+  var PRICES = { kombo: [110000, 230000], rollo: [140000, 240000], dikey: [240000, 340000], vertikal: [100000, 100000], gorizontal: [160000, 160000], rimskiy: [250000, 250000] };
+  var MIN_AREA = { plisse: 1 };
+  var FABRICS = [
+    { id: "Screen", op: 0.42, price: 100000 },
+    { id: "Lezbon", op: 0.66, price: 130000 },
+    { id: "Roma", op: 0.86, price: 170000 },
+    { id: "Blackout", op: 0.98, price: 200000 }
+  ];
+  var TYPES = ["plisse", "kombo", "rollo", "dikey", "vertikal", "gorizontal", "rimskiy"];
+  var FRAMES = [
+    { id: "oq", c: "#F2F1EC", d: "#D7D5CE" }, { id: "kulrang", c: "#8E9195", d: "#6E7175" },
+    { id: "antratsit", c: "#3B3F44", d: "#2A2D31" }, { id: "qora", c: "#1F1F20", d: "#111" },
+    { id: "oltindub", c: "#A9672F", d: "#7E4A1F" }, { id: "yongoq", c: "#6A3D22", d: "#4A2915" }
+  ];
+  var COLORS = [
+    { id: "oq", c: "#F4F1EA" }, { id: "krem", c: "#EADFC8" }, { id: "bej", c: "#D6C2A0" }, { id: "qum", c: "#BFA27A" },
+    { id: "kulrang", c: "#A3A3A0" }, { id: "grafit", c: "#55585B" }, { id: "kakao", c: "#7A5843" }, { id: "zaytun", c: "#8C8B63" },
+    { id: "pushti", c: "#DDB7AE" }, { id: "kok", c: "#7E9AAE" }
+  ];
+
+  var T = {
+    uz: {
+      title: "Imperial Primerka — derazangizda ko‘ring", brand_s: "JALYUZI · TOSHKENT",
+      h1a: "Primerka", h1b: "derazangizda ko‘ring",
+      lead: "O‘lchamni kiriting, rom va mato rangini tanlang — jalyuzi o‘rnatilgandan keyin qanday ko‘rinishini va taxminiy narxini darhol ko‘rasiz.",
+      view_h: "Ko‘rinish", st_open: "Ochiq", st_closed: "Yopiq",
+      note_view: "Rasm taxminiy: aniq rang va mato namunalarini usta o‘lchovga olib keladi.",
+      s_size: "1 · O‘LCHAM", f_w: "Eni, sm", f_h: "Bo‘yi, sm", f_s: "Tabaqalar soni", f_n: "Shunday derazalar",
+      shape_rect: "To‘g‘ri burchakli", shape_arch: "Arkali", shape_aria: "Deraza shakli",
+      s_frame: "2 · ROM RANGI", s_type: "3 · JALYUZI TURI", s_color: "4 · MATO RANGI",
+      frames: { oq: "Oq", kulrang: "Kulrang", antratsit: "Antratsit", qora: "Qora", oltindub: "Oltin dub", yongoq: "Yong‘oq" },
+      colors: { oq: "Oq", krem: "Krem", bej: "Bej", qum: "Qum", kulrang: "Kulrang", grafit: "Grafit", kakao: "Kakao", zaytun: "Zaytun", pushti: "Chang pushti", kok: "Sokin ko‘k" },
+      types: { plisse: "Plisse", kombo: "Kombo (kun-tun)", rollo: "Rollo", dikey: "Dikey", vertikal: "Vertikal", gorizontal: "Gorizontal", rimskiy: "Rimskiy shtora" },
+      fabs: { Screen: "shaffof", Lezbon: "yarim shaffof", Roma: "dimout", Blackout: "blackout" },
+      frame_l: "Rom", color_l: "Mato",
+      p_l: "TAXMINIY NARX", sum: "so‘m",
+      meta_plisse: function (s, a, b) { return s + " ta tabaqa · har biri " + a + " m²" + (b ? " (kamida 1 m² hisoblanadi)" : ""); },
+      meta_m2: function (a) { return "Maydon: " + a + " m²"; },
+      meta_n: function (n) { return n > 1 ? " · " + n + " ta deraza" : ""; },
+      arch_note: " · arka qismi narxga kirmagan",
+      facts: "Toshkent shahrida o‘lchov, yetkazish va o‘rnatish bepul · 1 yil kafolat · aniq narx o‘lchovdan keyin.",
+      facts_ready: " O‘lchovdan keyin 3 kunda tayyor.",
+      b_send: "Telegram’da bepul o‘lchovga yozilish", b_img: "Rasmni saqlash",
+      copied: "Tanlovingiz nusxalandi — Telegram’da xabarga qo‘ying (joylashtiring).",
+      saved: "Rasm saqlandi — uni Telegram yoki Instagram direktga yuborishingiz mumkin.",
+      msg: function (o) { return "Salom! Imperial Primerka orqali tanladim:\n• " + o.type + "\n• O‘lcham: " + o.w + " × " + o.h + " sm, " + o.s + " tabaqa" + (o.arch ? ", arkali" : "") + (o.n > 1 ? ", " + o.n + " ta deraza" : "") + "\n• Rom: " + o.frame + "\n• Mato rangi: " + o.color + "\n• Taxminiy narx: " + o.price + "\nBepul o‘lchovga yozilmoqchiman."; },
+      aria: function (o) { return o.type + ", mato " + o.color + ", rom " + o.frame + ", " + o.w + " × " + o.h + " sm, " + o.s + " tabaqa"; },
+      wm: "IMPERIAL JALYUZI · taxminiy ko‘rinish", unit: "sm",
+      hours: "Du–Sha 9:30–20:00 · Ya 10:00–18:00"
+    },
+    ru: {
+      title: "Imperial Примерка — посмотрите на своём окне", brand_s: "ЖАЛЮЗИ · ТАШКЕНТ",
+      h1a: "Примерка", h1b: "посмотрите на своём окне",
+      lead: "Введите размер, выберите цвет рамы и ткани — сразу увидите, как будут выглядеть жалюзи после установки, и примерную цену.",
+      view_h: "Вид", st_open: "Открыто", st_closed: "Закрыто",
+      note_view: "Изображение примерное: точные цвета и образцы ткани мастер привезёт на замер.",
+      s_size: "1 · РАЗМЕР", f_w: "Ширина, см", f_h: "Высота, см", f_s: "Створок", f_n: "Таких окон",
+      shape_rect: "Прямоугольное", shape_arch: "Арочное", shape_aria: "Форма окна",
+      s_frame: "2 · ЦВЕТ РАМЫ", s_type: "3 · ТИП ЖАЛЮЗИ", s_color: "4 · ЦВЕТ ТКАНИ",
+      frames: { oq: "Белый", kulrang: "Серый", antratsit: "Антрацит", qora: "Чёрный", oltindub: "Золотой дуб", yongoq: "Орех" },
+      colors: { oq: "Белый", krem: "Крем", bej: "Беж", qum: "Песок", kulrang: "Серый", grafit: "Графит", kakao: "Какао", zaytun: "Олива", pushti: "Пыльная роза", kok: "Тихий синий" },
+      types: { plisse: "Плиссе", kombo: "Зебра «день-ночь»", rollo: "Рулонные", dikey: "Дикей", vertikal: "Вертикальные", gorizontal: "Горизонтальные", rimskiy: "Римская штора" },
+      fabs: { Screen: "прозрачная", Lezbon: "полупрозрачная", Roma: "димаут", Blackout: "блэкаут" },
+      frame_l: "Рама", color_l: "Ткань",
+      p_l: "ПРИМЕРНАЯ ЦЕНА", sum: "сум",
+      meta_plisse: function (s, a, b) { return s + " створ. · каждая " + a + " м²" + (b ? " (считается минимум 1 м²)" : ""); },
+      meta_m2: function (a) { return "Площадь: " + a + " м²"; },
+      meta_n: function (n) { return n > 1 ? " · окон: " + n : ""; },
+      arch_note: " · арка в цену не входит",
+      facts: "По Ташкенту замер, доставка и установка бесплатно · гарантия 1 год · точная цена после замера.",
+      facts_ready: " Готово через 3 дня после замера.",
+      b_send: "Записаться на бесплатный замер в Telegram", b_img: "Сохранить картинку",
+      copied: "Ваш выбор скопирован — вставьте его в сообщение в Telegram.",
+      saved: "Картинка сохранена — можно отправить её в Telegram или Instagram Direct.",
+      msg: function (o) { return "Здравствуйте! Выбрал(а) в Imperial Примерке:\n• " + o.type + "\n• Размер: " + o.w + " × " + o.h + " см, створок: " + o.s + (o.arch ? ", арка" : "") + (o.n > 1 ? ", окон: " + o.n : "") + "\n• Рама: " + o.frame + "\n• Цвет ткани: " + o.color + "\n• Примерная цена: " + o.price + "\nХочу записаться на бесплатный замер."; },
+      aria: function (o) { return o.type + ", ткань " + o.color + ", рама " + o.frame + ", " + o.w + " × " + o.h + " см, створок " + o.s; },
+      wm: "IMPERIAL JALYUZI · примерный вид", unit: "см",
+      hours: "Пн–Сб 9:30–20:00 · Вс 10:00–18:00"
+    }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var st = { lang: "uz", shape: "rect", frame: "oq", type: "plisse", fab: "Lezbon", color: "krem" };
+  var NS = "http://www.w3.org/2000/svg";
+
+  function fmt(x) { return String(Math.round(x / 1000) * 1000).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+  function clamp(v, lo, hi, def) { v = parseInt(v, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+  function shade(hex, k) { // k<0 darker, k>0 lighter
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    var f = function (c) { return Math.round(k < 0 ? c * (1 + k) : c + (255 - c) * k); };
+    return "#" + ((1 << 24) + (f(r) << 16) + (f(g) << 8) + f(b)).toString(16).slice(1);
+  }
+  function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+
+  function inputs() {
+    return { w: clamp($("c-w").value, 30, 400, 140), h: clamp($("c-h").value, 30, 350, 150), s: clamp($("c-s").value, 1, 6, 2), n: clamp($("c-n").value, 1, 50, 1), c: clamp($("c-open").value, 0, 100, 60) / 100 };
+  }
+
+  // ---------- drawing ----------
+  function draw() {
+    var d = T[st.lang], v = inputs(), svg = $("scene");
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var fr = FRAMES.filter(function (f) { return f.id === st.frame; })[0];
+    var col = COLORS.filter(function (c) { return c.id === st.color; })[0].c;
+    var defs = el("defs", {}, svg);
+    var wall = el("linearGradient", { id: "wall", x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
+    el("stop", { offset: 0, "stop-color": "#EFE9DF" }, wall); el("stop", { offset: 1, "stop-color": "#E2D9CA" }, wall);
+    var sky = el("linearGradient", { id: "sky", x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
+    el("stop", { offset: 0, "stop-color": "#BFD9EC" }, sky); el("stop", { offset: .62, "stop-color": "#E4EEF3" }, sky); el("stop", { offset: 1, "stop-color": "#C9D6B8" }, sky);
+    var shine = el("linearGradient", { id: "shine", x1: 0, y1: 0, x2: 1, y2: 1 }, defs);
+    el("stop", { offset: 0, "stop-color": "#fff", "stop-opacity": .35 }, shine); el("stop", { offset: .5, "stop-color": "#fff", "stop-opacity": 0 }, shine);
+    var drop = el("filter", { id: "sh", x: "-10%", y: "-10%", width: "130%", height: "130%" }, defs);
+    el("feDropShadow", { dx: 0, dy: 3, stdDeviation: 3, "flood-opacity": .22 }, drop);
+
+    el("rect", { x: 0, y: 0, width: 400, height: 440, fill: "url(#wall)" }, svg);
+    el("rect", { x: 0, y: 404, width: 400, height: 36, fill: "#CDBFA9" }, svg);
+    el("rect", { x: 0, y: 400, width: 400, height: 5, fill: "#B9A88E" }, svg);
+
+    // window geometry (fits 290 × 300 area, arch adds on top)
+    var archH0 = st.shape === "arch" ? 0.22 : 0;
+    var maxW = 290, maxH = 300;
+    var sc = Math.min(maxW / v.w, maxH / (v.h * (1 + archH0)));
+    var W = v.w * sc, H = v.h * sc, AH = W * archH0 * (v.h / v.w) > W / 2 ? W / 2 : H * archH0;
+    if (st.shape === "arch") AH = Math.min(W / 2, Math.max(28, H * 0.22));
+    var X = 200 - W / 2, Y = 30 + (maxH + (st.shape === "arch" ? 60 : 0) - H - AH) / 2 + AH;
+    if (Y + H > 360) Y = 360 - H;
+    var ft = Math.max(7, Math.min(12, W * 0.04)), mt = ft * 0.7;
+
+    // window recess shadow + sill
+    if (st.shape === "arch") el("path", { d: "M" + (X - 8) + "," + (Y + H) + " V" + Y + " Q" + (X + W / 2) + "," + (Y - AH * 2 - 12) + " " + (X + W + 8) + "," + Y + " V" + (Y + H) + " Z", fill: "#D9CFBF" }, svg);
+    else el("rect", { x: X - 8, y: Y - 6, width: W + 16, height: H + 6, rx: 3, fill: "#D9CFBF" }, svg);
+    var g = el("g", { filter: "url(#sh)" }, svg);
+    if (st.shape === "arch") {
+      el("path", { d: "M" + X + "," + Y + " Q" + (X + W / 2) + "," + (Y - AH * 2) + " " + (X + W) + "," + Y + " Z", fill: fr.c }, g);
+    }
+    el("rect", { x: X, y: Y, width: W, height: H, fill: fr.c }, g);
+    el("rect", { x: X - 14, y: Y + H, width: W + 28, height: 9, rx: 2, fill: "#F7F4EE" }, svg);
+    el("rect", { x: X - 14, y: Y + H + 9, width: W + 28, height: 3, fill: "#CFC6B6" }, svg);
+
+    // arch glass
+    if (st.shape === "arch") {
+      var ai = ft;
+      el("path", { d: "M" + (X + ai) + "," + (Y - mt / 2) + " Q" + (X + W / 2) + "," + (Y - AH * 2 + ai * 2.2) + " " + (X + W - ai) + "," + (Y - mt / 2) + " Z", fill: "url(#sky)" }, svg);
+      el("rect", { x: X, y: Y - mt / 2, width: W, height: mt, fill: fr.d }, svg);
+    }
+
+    // sashes
+    var gx0 = X + ft, gy0 = Y + (st.shape === "arch" ? mt / 2 : ft), gW = W - 2 * ft, gH = H - ft - (st.shape === "arch" ? mt / 2 : ft);
+    var sw = (gW - (v.s - 1) * mt) / v.s, glass = [];
+    for (var i = 0; i < v.s; i++) {
+      var gx = gx0 + i * (sw + mt);
+      el("rect", { x: gx, y: gy0, width: sw, height: gH, fill: "url(#sky)" }, svg);
+      el("rect", { x: gx, y: gy0, width: sw, height: gH, fill: "none", stroke: fr.d, "stroke-width": 1.2 }, svg);
+      glass.push({ x: gx, y: gy0, w: sw, h: gH });
+      if (i < v.s - 1) el("rect", { x: gx + sw, y: gy0 - 1, width: mt, height: gH + 2, fill: fr.c }, svg);
+    }
+
+    var c = v.c, t = st.type;
+    if (t === "plisse" || t === "rollo" || t === "kombo" || t === "gorizontal") {
+      glass.forEach(function (gl, idx) { drawSash(svg, gl, c, col, t); });
+    } else {
+      drawOverall(svg, { x: X, y: Y, w: W, h: H }, c, col, t);
+    }
+    // glass shine on top
+    glass.forEach(function (gl) { el("rect", { x: gl.x, y: gl.y, width: gl.w, height: gl.h, fill: "url(#shine)", "pointer-events": "none" }, svg); });
+    // handles
+    glass.forEach(function (gl, idx) { if (v.s > 1 && idx % 2 === 0 || v.s === 1) el("rect", { x: gl.x + gl.w - 5, y: gl.y + gl.h / 2 - 9, width: 3, height: 18, rx: 1.5, fill: shade(fr.c, fr.id === "oq" ? -0.25 : 0.35) }, svg); });
+
+    // dimensions
+    var dc = "#7A6E5C";
+    var yy = Math.min(Y + H + 30, 396);
+    el("line", { x1: X, y1: yy, x2: X + W, y2: yy, stroke: dc, "stroke-width": 1 }, svg);
+    el("line", { x1: X, y1: yy - 5, x2: X, y2: yy + 5, stroke: dc }, svg); el("line", { x1: X + W, y1: yy - 5, x2: X + W, y2: yy + 5, stroke: dc }, svg);
+    var tw = el("text", { x: 200, y: yy - 5, "text-anchor": "middle", "font-size": 12, fill: "#5E5341", "font-family": "Inter, sans-serif" }, svg); tw.textContent = v.w + " " + d.unit;
+    var xx = Math.max(X - 26, 14);
+    el("line", { x1: xx, y1: Y, x2: xx, y2: Y + H, stroke: dc }, svg);
+    el("line", { x1: xx - 5, y1: Y, x2: xx + 5, y2: Y, stroke: dc }, svg); el("line", { x1: xx - 5, y1: Y + H, x2: xx + 5, y2: Y + H, stroke: dc }, svg);
+    var th = el("text", { x: xx - 6, y: Y + H / 2, "text-anchor": "middle", "font-size": 12, fill: "#5E5341", "font-family": "Inter, sans-serif", transform: "rotate(-90 " + (xx - 6) + " " + (Y + H / 2) + ")" }, svg); th.textContent = v.h + " " + d.unit;
+    var wm = el("text", { x: 200, y: 428, "text-anchor": "middle", "font-size": 11, "letter-spacing": 2, fill: "#7F7262", "font-family": "Inter, sans-serif" }, svg); wm.textContent = d.wm;
+
+    var o = summary();
+    svg.setAttribute("aria-label", d.aria(o));
+  }
+
+  function fabOp() { var f = FABRICS.filter(function (x) { return x.id === st.fab; })[0]; return f.op; }
+
+  function drawSash(svg, g, c, col, t) {
+    var minH = 6, bh = minH + (g.h - minH) * c;
+    var grp = el("g", {}, svg);
+    if (t === "plisse") {
+      var op = fabOp();
+      el("rect", { x: g.x, y: g.y, width: g.w, height: bh, fill: col, "fill-opacity": op }, grp);
+      var step = Math.max(3, Math.min(5, g.w / 30));
+      for (var y = g.y + step; y < g.y + bh - 1; y += step) {
+        el("line", { x1: g.x, y1: y, x2: g.x + g.w, y2: y, stroke: shade(col, -0.22), "stroke-opacity": 0.55 * op + 0.15, "stroke-width": 0.8 }, grp);
+        el("line", { x1: g.x, y1: y + step / 2, x2: g.x + g.w, y2: y + step / 2, stroke: shade(col, 0.35), "stroke-opacity": 0.4, "stroke-width": 0.6 }, grp);
+      }
+      el("rect", { x: g.x, y: g.y, width: g.w, height: 3.5, fill: shade(col, -0.35) }, grp);
+      el("rect", { x: g.x, y: g.y + bh - 3, width: g.w, height: 3.5, fill: shade(col, -0.35) }, grp);
+    } else if (t === "rollo") {
+      el("rect", { x: g.x - 2, y: g.y, width: g.w + 4, height: 8, rx: 4, fill: shade(col, -0.3) }, grp);
+      el("rect", { x: g.x, y: g.y + 6, width: g.w, height: Math.max(0, bh - 6), fill: col, "fill-opacity": 0.92 }, grp);
+      el("rect", { x: g.x, y: g.y + Math.max(6, bh) - 3, width: g.w, height: 4, fill: shade(col, -0.4) }, grp);
+    } else if (t === "kombo") {
+      el("rect", { x: g.x - 2, y: g.y, width: g.w + 4, height: 8, rx: 4, fill: shade(col, -0.3) }, grp);
+      var band = Math.max(6, Math.min(11, g.h / 16)), yy = g.y + 7, k = 0;
+      var cp = el("clipPath", { id: "kc" + Math.round(g.x) }, grp);
+      el("rect", { x: g.x, y: g.y + 7, width: g.w, height: Math.max(0, bh - 7) }, cp);
+      var bands = el("g", { "clip-path": "url(#kc" + Math.round(g.x) + ")" }, grp);
+      for (; yy < g.y + g.h; yy += band, k++) el("rect", { x: g.x, y: yy, width: g.w, height: band, fill: col, "fill-opacity": k % 2 ? 0.32 : 0.96 }, bands);
+      el("rect", { x: g.x, y: g.y + Math.max(7, bh) - 3, width: g.w, height: 4, fill: shade(col, -0.4) }, grp);
+    } else if (t === "gorizontal") {
+      el("rect", { x: g.x - 1, y: g.y, width: g.w + 2, height: 5, fill: shade(col, -0.3) }, grp);
+      var sl = 6, tilt = 0.35 + 0.65 * c;
+      for (var y2 = g.y + 5; y2 < g.y + bh; y2 += sl) {
+        el("rect", { x: g.x, y: y2, width: g.w, height: sl * tilt, fill: col }, grp);
+        el("line", { x1: g.x, y1: y2 + sl * tilt, x2: g.x + g.w, y2: y2 + sl * tilt, stroke: shade(col, -0.35), "stroke-width": 0.6 }, grp);
+      }
+      el("line", { x1: g.x + g.w * 0.2, y1: g.y, x2: g.x + g.w * 0.2, y2: g.y + bh, stroke: shade(col, -0.2), "stroke-width": 0.5 }, grp);
+      el("line", { x1: g.x + g.w * 0.8, y1: g.y, x2: g.x + g.w * 0.8, y2: g.y + bh, stroke: shade(col, -0.2), "stroke-width": 0.5 }, grp);
+    }
+  }
+
+  function drawOverall(svg, w, c, col, t) {
+    var x = w.x - 10, y = w.y - 14, W = w.w + 20, H = w.h + 14;
+    var grp = el("g", { filter: "url(#sh)" }, svg);
+    if (t === "rimskiy") {
+      var bh = 22 + (H - 22) * c, fold = Math.max(14, Math.min(26, H / 10));
+      el("rect", { x: x - 4, y: y - 6, width: W + 8, height: 8, rx: 2, fill: shade(col, -0.35) }, grp);
+      el("rect", { x: x, y: y, width: W, height: bh, fill: col, "fill-opacity": 0.95 }, grp);
+      for (var yy = y + fold; yy < y + bh - 4; yy += fold) {
+        el("rect", { x: x, y: yy - 3, width: W, height: 3, fill: shade(col, -0.18), "fill-opacity": .7 }, grp);
+        el("line", { x1: x, y1: yy, x2: x + W, y2: yy, stroke: shade(col, 0.3), "stroke-width": 1 }, grp);
+      }
+      el("path", { d: "M" + x + "," + (y + bh - 2) + " q" + W / 2 + ",10 " + W + ",0", fill: col, stroke: shade(col, -0.2), "stroke-width": 1 }, grp);
+    } else { // vertikal / dikey
+      el("rect", { x: x - 4, y: y - 6, width: W + 8, height: 8, rx: 2, fill: shade(col, -0.35) }, grp);
+      if (t === "dikey") { // sheer tulle layer behind
+        el("rect", { x: x, y: y + 2, width: W, height: H + 8, fill: "#FFFFFF", "fill-opacity": 0.28 }, grp);
+        for (var tx = x + 4; tx < x + W; tx += 8) el("line", { x1: tx, y1: y + 2, x2: tx, y2: y + H + 10, stroke: "#fff", "stroke-opacity": .35, "stroke-width": 1 }, grp);
+      }
+      var lw = 16, n = Math.max(3, Math.round(W / lw)), slot = W / n, ww = slot * (0.18 + 0.82 * c);
+      for (var i = 0; i < n; i++) {
+        var lx = x + i * slot + (slot - ww) / 2;
+        el("rect", { x: lx, y: y + 2, width: ww, height: H + 8, fill: col, "fill-opacity": t === "dikey" ? 0.93 : 0.88 }, grp);
+        el("line", { x1: lx + ww / 2, y1: y + 2, x2: lx + ww / 2, y2: y + H + 10, stroke: shade(col, -0.12), "stroke-width": 0.6 }, grp);
+      }
+    }
+  }
+
+  // ---------- price ----------
+  function summary() {
+    var d = T[st.lang], v = inputs(), t = st.type, price, meta;
+    var typeName = d.types[t] + (t === "plisse" ? " — " + st.fab + " (" + d.fabs[st.fab] + ")" : "");
+    if (t === "plisse") {
+      var f = FABRICS.filter(function (x) { return x.id === st.fab; })[0];
+      var a1 = (v.w / v.s / 100) * (v.h / 100), b1 = Math.max(a1, MIN_AREA.plisse);
+      price = "≈ " + fmt(b1 * v.s * v.n * f.price) + " " + d.sum;
+      meta = d.meta_plisse(v.s, a1.toFixed(2), a1 < MIN_AREA.plisse);
+    } else {
+      var a = (v.w / 100) * (v.h / 100), p = PRICES[t], tot = a * v.n;
+      price = p[0] === p[1] ? "≈ " + fmt(tot * p[0]) + " " + d.sum : "≈ " + fmt(tot * p[0]) + " – " + fmt(tot * p[1]) + " " + d.sum;
+      meta = d.meta_m2(a.toFixed(2));
+    }
+    meta += d.meta_n(v.n) + (st.shape === "arch" ? d.arch_note : "");
+    return { type: typeName, w: v.w, h: v.h, s: v.s, n: v.n, arch: st.shape === "arch", price: price, meta: meta,
+      frame: d.frames[st.frame], color: d.colors[st.color] };
+  }
+
+  function update() {
+    var d = T[st.lang], o = summary();
+    $("o-price").textContent = o.price;
+    $("o-meta").textContent = o.meta;
+    $("o-facts").textContent = d.facts + (st.type === "rimskiy" ? "" : d.facts_ready);
+    draw();
+  }
+
+  // ---------- controls ----------
+  function chipRow(box, items, key, label) {
+    box.innerHTML = "";
+    items.forEach(function (it) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.setAttribute("aria-pressed", String(st[key] === it.id));
+      b.textContent = it.label;
+      if (it.small) { var s = document.createElement("small"); s.textContent = it.small; b.appendChild(s); }
+      b.addEventListener("click", function () { st[key] = it.id; build(); update(); });
+      box.appendChild(b);
+    });
+    if (label) box.setAttribute("aria-label", label);
+  }
+  function swRow(box, items, key, names, nameEl, label) {
+    box.innerHTML = "";
+    items.forEach(function (it) {
+      var b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-pressed", String(st[key] === it.id)); b.setAttribute("aria-label", names[it.id]); b.title = names[it.id];
+      var i = document.createElement("i"); i.style.background = it.c; b.appendChild(i);
+      b.addEventListener("click", function () { st[key] = it.id; build(); update(); });
+      box.appendChild(b);
+    });
+    nameEl.textContent = names[st[key]];
+    box.setAttribute("aria-label", label);
+  }
+  function build() {
+    var d = T[st.lang];
+    chipRow($("shape"), [{ id: "rect", label: d.shape_rect }, { id: "arch", label: d.shape_arch }], "shape", d.shape_aria);
+    swRow($("frames"), FRAMES, "frame", d.frames, $("frame-name"), d.s_frame);
+    chipRow($("types"), TYPES.map(function (t) { return { id: t, label: d.types[t] }; }), "type", d.s_type);
+    $("fabs").hidden = st.type !== "plisse";
+    chipRow($("fabs"), FABRICS.map(function (f) { return { id: f.id, label: f.id, small: d.fabs[f.id] }; }), "fab", "Mato");
+    swRow($("colors"), COLORS, "color", d.colors, $("color-name"), d.s_color);
+  }
+
+  function apply(lang) {
+    st.lang = lang; var d = T[lang];
+    document.documentElement.lang = lang === "ru" ? "ru" : "uz-Latn";
+    document.title = d.title;
+    document.querySelectorAll("[data-t]").forEach(function (e) { var k = e.getAttribute("data-t"); if (typeof d[k] === "string") e.textContent = d[k]; });
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang)); });
+    document.querySelector("[data-home]").setAttribute("href", lang === "ru" ? "../ru/" : "../");
+    build(); update();
+  }
+
+  ["c-w", "c-h", "c-s", "c-n", "c-open"].forEach(function (id) { $(id).addEventListener("input", update); $(id).addEventListener("change", update); });
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { var l = b.getAttribute("data-lang"); apply(l); try { localStorage.setItem("imperial_lang", l); } catch (e) {} });
+  });
+
+  function setStatus(t) { $("status").textContent = t; }
+  $("b-send").addEventListener("click", function () {
+    var d = T[st.lang], text = d.msg(summary());
+    var go = function () { window.open("https://t.me/jalyuzi_imperial", "_blank", "noopener"); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { setStatus(d.copied); go(); }, function () { go(); });
+    } else { go(); }
+  });
+
+  function pngBlob(cb) {
+    var svg = $("scene"), xml = new XMLSerializer().serializeToString(svg);
+    if (xml.indexOf("xmlns=") < 0) xml = xml.replace("<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
+    var img = new Image();
+    img.onload = function () {
+      var cv = document.createElement("canvas"); cv.width = 1200; cv.height = 1320;
+      var cx = cv.getContext("2d"); cx.drawImage(img, 0, 0, 1200, 1320);
+      cv.toBlob(cb, "image/png");
+    };
+    img.onerror = function () { cb(null); };
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(xml);
+  }
+  $("b-img").addEventListener("click", function () {
+    var d = T[st.lang];
+    pngBlob(function (blob) {
+      if (!blob) return;
+      var file = null;
+      try { file = new File([blob], "imperial-primerka.png", { type: "image/png" }); } catch (e) {}
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: "Imperial Primerka" }).catch(function () {});
+        return;
+      }
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "imperial-primerka.png";
+      document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+      setStatus(d.saved);
+    });
+  });
+
+  var saved = null;
+  try { saved = localStorage.getItem("imperial_lang"); } catch (e) {}
+  var q = (location.search.match(/[?&]lang=(uz|ru)/) || [])[1];
+  apply(q || saved || "uz");
+})();
+</script>
+</body>
+</html>
