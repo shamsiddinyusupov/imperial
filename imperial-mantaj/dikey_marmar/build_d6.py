@@ -22,10 +22,11 @@ W, H, FPS = 1080, 1920, 30
 ENC = "-c:v libx264 -preset fast -crf 15 -pix_fmt yuv420p"
 XF = 0.3
 # scene, file, start on timeline
-SC = [("still", "seg/still.mp4", 0.0), ("alive", "seg/gold.mp4", 3.3), ("pan", "seg/pan.mp4", 5.7),
-      ("turn", "seg/turn.mp4", 8.9), ("night", "seg/night.mp4", 12.1), ("reveal", "seg/reveal.mp4", 15.3),
-      ("end", "bo/end.mp4", 19.0)]
-TOTAL = 24.6
+SC = [("still", "seg/still.mp4", 0.0), ("alive", "seg/gold.mp4", 3.3), ("macro", "seg/macro.mp4", 5.7),
+      ("pan", "seg/pan.mp4", 8.0), ("wide", "seg/wide.mp4", 11.2), ("turn", "seg/turn.mp4", 14.4),
+      ("open", "seg/open.mp4", 17.6), ("night", "seg/night.mp4", 20.8), ("wall", "seg/wall.mp4", 24.0),
+      ("reveal", "seg/reveal.mp4", 27.2), ("end", "bo/end.mp4", 31.0)]
+TOTAL = 36.6
 NF = int(round(TOTAL * FPS))
 S = {k: s for k, _, s in SC}
 
@@ -86,10 +87,14 @@ def caption(img, t, t0, t1, top, rib, ru, y=1400):
 
 CAPS = [(-1.0, 3.1, "Bu —", "marmarmi?", "Это — мрамор?"),
         (3.45, 5.5, "Yo‘q.", "Bu — mato.", "Нет. Это ткань."),
-        (5.9, 8.7, "Oltin tomirli mato", "+ naqshli tyul", "Ткань с золотыми прожилками и узорный тюль"),
-        (9.1, 11.9, "Dikey jalyuzi —", "tyul va mato birga", "Вертикальные жалюзи: тюль и ткань вместе"),
-        (12.3, 15.1, "Kechasi —", "yopiq va sokin.", "Ночью — закрыто и спокойно."),
-        (15.5, 18.8, "Xonangizga —", "oltin tafsil.", "Золотая деталь для вашего дома.")]
+        (5.85, 7.8, "Har bir tomir —", "oltin rangda.", "Каждая прожилка — цвета золота."),
+        (8.15, 11.0, "Oltin tomirli mato", "+ naqshli tyul", "Ткань с золотыми прожилками и узорный тюль"),
+        (11.35, 14.2, "O‘rtada —", "oq naqshli tyul.", "В центре — белый узорный тюль."),
+        (14.55, 17.4, "Dikey jalyuzi —", "tyul va mato birga", "Вертикальные жалюзи: тюль и ткань вместе"),
+        (18.4, 20.6, "Bir harakat —", "deraza ochiq.", "Одно движение — и окно открыто."),
+        (20.95, 23.8, "Kechasi —", "yopiq va sokin.", "Ночью — закрыто и спокойно."),
+        (24.15, 27.0, "Butun devor —", "bitta kompozitsiya.", "Вся стена — одна композиция."),
+        (27.35, 30.8, "Xonangizga —", "oltin tafsil.", "Золотая деталь для вашего дома.")]
 
 
 def frame(i):
@@ -130,10 +135,11 @@ def render_ov():
 
 def music():
     from glass_bed import glass_bed
-    glass_bed(f"{D}/bed.wav", TOTAL, [S["pan"], S["turn"], S["night"], S["reveal"]], S["alive"], S["end"])
+    glass_bed(f"{D}/bed.wav", TOTAL, [S[k] for k in ("macro", "pan", "wide", "turn", "open", "night", "wall",
+                                                    "reveal")], S["alive"], S["end"])
 
 
-OUTN = "classic_dikey_marmarmi"
+OUTN = "classic_dikey_marmarmi_v2"
 
 
 def final():
