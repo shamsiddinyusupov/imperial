@@ -1,14 +1,14 @@
-"""Pre-render each page's video into its frame box (crop to the box aspect, scale, light grade). box/<name>.mp4"""
+"""(v2: full-bleed boxes f*, no paper margins — owner 25.11) Pre-render each page's video into its frame box (crop to the box aspect, scale, light grade). box/<name>.mp4"""
 import subprocess
 from multiprocessing import Pool
 
 D = "/home/claude/reels/antrasit"
 G = "eq=contrast=1.05:saturation=0.94"
 # name: (segment, box w, box h, speed, pingpong)
-BOX = {"p1": ("eshik", 900, 1080, 1.0, False),
-       "p2a": ("tabaqa", 440, 1000, 1.0, False), "p2b": ("macro", 440, 1000, 0.9, True),
-       "p3": ("deraza2", 1080, 1500, 1.0, False),
-       "p4": ("door2", 620, 1340, 1.0, False)}
+BOX = {"f1": ("eshik", 1080, 1920, 1.0, False),
+       "f2a": ("tabaqa", 538, 1920, 1.0, False), "f2b": ("macro", 538, 1920, 0.9, True),
+       "f3": ("deraza2", 1080, 1920, 1.0, False),
+       "f4": ("door2", 1080, 1920, 1.0, False)}
 
 
 def run(name):
